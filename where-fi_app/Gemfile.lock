@@ -29,6 +29,7 @@ GEM
       tzinfo (~> 1.1)
     arel (5.0.1.20140414130214)
     awesome_print (1.2.0)
+    bcrypt (3.1.9)
     builder (3.2.2)
     coderay (1.1.0)
     coffee-rails (4.0.1)
@@ -141,6 +142,7 @@ PLATFORMS
 
 DEPENDENCIES
   awesome_print
+  bcrypt (~> 3.1.7)
   coffee-rails (~> 4.0.0)
   geocoder
   jbuilder (~> 2.0)

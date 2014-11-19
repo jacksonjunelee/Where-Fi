@@ -1,6 +1,11 @@
 class User < ActiveRecord::Base
-  validates :username, presence: true, uniqueness: true
-  validates_presence_of :first_name, :last_name
-  has_and_belongs_to_many :locations
+  validates_presence_of :first_name, :last_name, :username
+  validates_uniqueness_of :username
   has_secure_password
+
+  has_and_belongs_to_many :locations
+  
+  def full_name
+  	return self.first_name + " " + self.last_name
+  end
 end
