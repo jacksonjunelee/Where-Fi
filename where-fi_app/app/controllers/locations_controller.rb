@@ -17,6 +17,13 @@ class LocationsController < ApplicationController
   def create
     @location = Location.new(location_params)
     if @location.save
+      table = ApplicationController.fusiontable
+      data = [{ "Boro"  => location_params[:boro],
+                "Location"  => location_params[:place_name],
+                "Latitude"  => location_params[:latitude],
+                "Longitude" => location_params[:longitude]}]
+                binding.pry
+         table.insert data
     	redirect_to location_path(@location)
     else
     	render :new
@@ -24,8 +31,7 @@ class LocationsController < ApplicationController
   end
 
   private
-  def location_params 
+  def location_params
   	params.require(:location).permit(:boro, :place_name, :details, :ssid, :latitude, :longitude, :address)
   end
 end
-
