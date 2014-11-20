@@ -1,9 +1,12 @@
 class Location < ActiveRecord::Base
-	validates_presence_of :address, :ssid, :place_name
+	validates_presence_of :ssid, :place_name
+  #we need to either validate the presence of a lat and long OR an address.
 
   has_and_belongs_to_many :users
   geocoded_by :address
-  after_validation :geocode, if: :address_changed?
+  reverse_geocoded_by :latitude, :longitude
+  after_validation :geocode, if: :address
+  # after_validation :reverse_geocode if: :latitude && :longitude
 
   def nearby_wifi(dist)
   # coordinates = Geocoder.coordinates(params[:location])

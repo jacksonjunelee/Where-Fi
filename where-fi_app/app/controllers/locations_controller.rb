@@ -2,12 +2,12 @@ class LocationsController < ApplicationController
 
   def index
     coordinates = Geocoder.coordinates(params[:location])
-    @location = Location.new({lat: coordinates[0], long: coordinates[1]})
+    @location = Location.new({latitude: coordinates[0], longitude: coordinates[1]})
     @c = @location.nearby_wifi(params[:distance].to_f)
   end
-
+  
   def show
-
+    @location = Location.find(params[:id])
   end
 
   def new
@@ -25,7 +25,7 @@ class LocationsController < ApplicationController
 
   private
   def location_params 
-  	params.require(:location).permit(:boro, :place_name, :details, :ssid, :lat, :long, :address)
+  	params.require(:location).permit(:boro, :place_name, :details, :ssid, :latitude, :longitude, :address)
   end
 end
 
