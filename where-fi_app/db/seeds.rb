@@ -1,7 +1,15 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+hotspots = HTTParty.get("https://nycopendata.socrata.com/api/views/jd4g-ks2z/rows.json?accessType=DOWNLOAD")["data"]
+
+Location.destroy_all 
+
+hotspots.each do |one_hotspot|
+	Location.create({
+		boro: one_hotspot[9],
+		place_name: one_hotspot[12],
+		ssid: one_hotspot[21],
+		latitude: one_hotspot[14].to_f,
+		longitude: one_hotspot[15].to_f
+	})
+end
+
+

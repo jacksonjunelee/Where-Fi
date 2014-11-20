@@ -5,9 +5,9 @@ class LocationsController < ApplicationController
     @location = Location.new({latitude: coordinates[0], longitude: coordinates[1]})
     @c = @location.nearby_wifi(params[:distance].to_f)
   end
-
+  
   def show
-
+    @location = Location.find(params[:id])
   end
 
   def new
