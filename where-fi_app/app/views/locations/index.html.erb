@@ -1,0 +1,7 @@
+<h1> Nearby Wifi Hotspots </h1>
+
+<% @c.each do |d| %>
+<p> Place: <%= d[11] %></p>
+<p> Address:<%= d[13] %></p>
+<br>
+<% end %>

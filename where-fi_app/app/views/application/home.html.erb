@@ -1,27 +1,2 @@
+welcome
 
-<%= form_tag(root_path, method: :get) do%>
-  <%= label_tag(:address, 'Address') %>
-  <%= text_field_tag(:location, params[:location]) %>
-  <%# dropdown_tag (ofwofwjrfojwrf) %>
-  <%= submit_tag("Search", name: :nil) %>
-<% end %>
-
-<% y = Geocoder.coordinates(params[:location]) %>
-<%= y %>
-
-
-<!-- if obj.geocoded?
-  obj.nearbys(30)                      # other objects within 30 miles
-  obj.distance_from([40.714,-100.234]) # distance from arbitrary point to object
-  obj.bearing_to("Paris, France")      # direction from object to arbitrary point
-end
-
-i=0
-while i <=882
-t= location.distance_to([ x[i][14].to_f , x[i][15].to_f ])
-  if t <= 5
-
-
-i+=1
-puts t
-end -->

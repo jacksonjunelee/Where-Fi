@@ -33,7 +33,7 @@ class UsersController < ApplicationController
 
 	def destroy
 		User.destroy(params[:id])
-		render :home 
+		render :home
 	end
 
 	private
