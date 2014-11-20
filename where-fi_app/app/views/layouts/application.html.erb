@@ -7,6 +7,12 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <%= form_tag(locations_path, method: :get) do%>
+    <%= label_tag(:address, 'Address') %>
+    <%= text_field_tag(:location, params[:location]) %>
+    <%= text_field_tag(:distance, params[:distance]) %>
+    <%= submit_tag("Search", name: :nil) %>
+  <% end %>
 
 <%= yield %>
 
