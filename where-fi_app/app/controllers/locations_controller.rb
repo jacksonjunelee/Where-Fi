@@ -1,7 +1,13 @@
 class LocationsController < ApplicationController
 
+  def index
+    coordinates = Geocoder.coordinates(params[:location])
+    @location = Location.new({lat: coordinates[0], long: coordinates[1]})
+    @c = @location.nearby_wifi(params[:distance].to_f)
+  end
+
   def show
-    @location = Location.find(params[:id])
+
   end
 
   def new
