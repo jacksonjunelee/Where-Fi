@@ -13,3 +13,5 @@ class CreateLocations < ActiveRecord::Migration
     end
   end
 end
+
+#change lat, long

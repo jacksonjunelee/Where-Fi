@@ -3,3 +3,5 @@ class Location < ActiveRecord::Base
   geocoded_by :address, latitude: :lat, longitude: :long
   after_validation :geocode, if: :address_changed?
 end
+
+# need to change lat, long to latitude longitude

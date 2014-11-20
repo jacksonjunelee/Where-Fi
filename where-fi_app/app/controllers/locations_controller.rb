@@ -13,3 +13,5 @@ class LocationsController < ApplicationController
   end
 
 end
+
+#state in private location_params

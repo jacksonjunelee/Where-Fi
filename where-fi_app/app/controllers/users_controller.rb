@@ -8,13 +8,13 @@ class UsersController < ApplicationController
 		@user = User.new
 	end
 
-	def create 
+	def create
 		@user = User.new(user_params)
-		if @user.save 
+		if @user.save
 			redirect_to @user
 		else
 			render :new
-		end 
+		end
 	end
 
 	def edit
@@ -31,9 +31,9 @@ class UsersController < ApplicationController
 		end
 	end
 
-	def destroy 
+	def destroy
 		User.destroy(params[:id])
-		redirect_to "/"
+		render :home 
 	end
 
 	private
