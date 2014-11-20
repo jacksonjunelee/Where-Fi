@@ -7,4 +7,11 @@ class ApplicationController < ActionController::Base
     render :home
   end
 
+  def self.fusiontable
+    @ft = GData::Client::FusionTables.new
+    @ft.clientlogin('wherefi@gmail.com', 'teamsneezy')
+    @ft.set_api_key('AIzaSyDtLNhGopiszIUoW-EpPcLjoH2YvVXfSR4')
+    @login = @ft.show_tables[0]
+  end
+
 end
