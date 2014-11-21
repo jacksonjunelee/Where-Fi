@@ -9,10 +9,8 @@ class Location < ActiveRecord::Base
 
 
   def nearby_wifi(dist)
-  # coordinates = Geocoder.coordinates(params[:location])
-  # location = Location.new {lat: :coordinates[0], long: :coordinates[1]}
-  data = HTTParty.get('https://nycopendata.socrata.com/api/views/jd4g-ks2z/rows.json?accessType=DOWNLOAD')["data"]
-  nearby_wifi = data.select { |spot| self.distance_to([spot[14].to_f , spot[15].to_f ]) <= dist }
-  sort_nearby_wifi = nearby_wifi.sort_by { |close| self.distance_to([close[14].to_f , close[15].to_f ])}
+	data = Location.all
+	nearby_wifi = data.select { |spot| self.distance_to([spot.latitude,spot.longitude]) <= dist}
+	sort_nearby_wifi =nearby_wifi.sort_by { |close| self.distance_to([close.latitude, close.longitude ])}
   end
 end
