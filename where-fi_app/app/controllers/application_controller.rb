@@ -9,8 +9,8 @@ class ApplicationController < ActionController::Base
 
   def self.fusiontable
     @ft = GData::Client::FusionTables.new
-    @ft.clientlogin('wherefi@gmail.com', 'teamsneezy')
-    @ft.set_api_key('AIzaSyDtLNhGopiszIUoW-EpPcLjoH2YvVXfSR4')
+    @ft.clientlogin(ENV["GOOGLE_ID"],ENV["GOOGLE_PW"])
+    @ft.set_api_key(ENV["GOOGLE_API"])
     @login = @ft.show_tables[0]
   end
 

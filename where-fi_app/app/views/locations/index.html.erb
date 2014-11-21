@@ -1,9 +1,9 @@
 <h1> Nearby Wifi Hotspots </h1>
 
-<% @c.each do |d| %>
-<p> Place: <%= d.place_name %></p>
-<p> Address:<%= d.address %></p>
-<p> Distance: <%= @location.distance_to(d) %>
+<% @near_wifi.each do |near_wifi| %>
+<p> Place: <%= near_wifi.place_name %></p>
+<p> Address:<%= near_wifi.address %></p>
+<p> Distance: <%= @location.distance_to(near_wifi) %>
 <br>
 <br>
 <br>

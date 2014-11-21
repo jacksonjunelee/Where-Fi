@@ -1,6 +1,6 @@
 hotspots = HTTParty.get("https://nycopendata.socrata.com/api/views/jd4g-ks2z/rows.json?accessType=DOWNLOAD")["data"]
 
-Location.destroy_all 
+Location.destroy_all
 
 hotspots.each do |hotspot|
 	Location.create({
@@ -11,5 +11,4 @@ hotspots.each do |hotspot|
 		longitude: hotspot[15].to_f
 	})
 end
-
-
+#query limit

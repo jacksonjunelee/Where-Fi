@@ -1,8 +1,12 @@
 class UsersController < ApplicationController
 
+	# before_action :authenticate,except: [:new, :create]
+	# syntax wrong
+
 	def show
 		@user = User.find(params[:id])
 	end
+	#need authenticate
 
 	def new
 		@user = User.new

@@ -1,9 +1,11 @@
 class Location < ActiveRecord::Base
 	validates_presence_of :ssid, :place_name
+	validates_presence_of :address || :latitude, :longitude
   #we need to either validate the presence of a lat and long OR an address.
 
   has_and_belongs_to_many :users
-  geocoded_by :address
+  geocoded_by :address, :latitude => :latitude, :longitude => :longitude
+	#need to be tested
   reverse_geocoded_by :latitude, :longitude, :address => :address
   after_validation :geocode, :reverse_geocode
 
