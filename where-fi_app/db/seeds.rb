@@ -2,13 +2,13 @@ hotspots = HTTParty.get("https://nycopendata.socrata.com/api/views/jd4g-ks2z/row
 
 Location.destroy_all 
 
-hotspots.each do |one_hotspot|
+hotspots.each do |hotspot|
 	Location.create({
-		boro: one_hotspot[9],
-		place_name: one_hotspot[12],
-		ssid: one_hotspot[21],
-		latitude: one_hotspot[14].to_f,
-		longitude: one_hotspot[15].to_f
+		boro: hotspot[9],
+		place_name: hotspot[12],
+		ssid: hotspot[21],
+		latitude: hotspot[14].to_f,
+		longitude: hotspot[15].to_f
 	})
 end
 
