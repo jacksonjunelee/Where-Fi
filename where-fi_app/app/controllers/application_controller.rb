@@ -14,4 +14,8 @@ class ApplicationController < ActionController::Base
     @login = @ft.show_tables[0]
   end
 
+  def authenticate
+    redirect_to login_path unless session[:current_user_id]
+  end
+
 end

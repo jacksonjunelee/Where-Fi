@@ -12,6 +12,7 @@ class LocationsController < ApplicationController
 
   def new
     @location = Location.new
+    #set session
   end
 
   def create
@@ -19,7 +20,7 @@ class LocationsController < ApplicationController
     coordinates = Geocoder.coordinates(location_params[:address])
     @location.latitude = coordinates[0]
     @location.longitude = coordinates[1]
-# need latitude and longitude
+# need latitude and longitude?
     if @location.save
       table = ApplicationController.fusiontable
       data = [{ "Boro"  => location_params[:boro],
@@ -39,4 +40,3 @@ class LocationsController < ApplicationController
   	params.require(:location).permit(:boro, :place_name, :details, :ssid, :latitude, :longitude, :address)
   end
 end
-  
