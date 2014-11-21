@@ -5,9 +5,8 @@ class Location < ActiveRecord::Base
   has_and_belongs_to_many :users
   geocoded_by :address
   reverse_geocoded_by :latitude, :longitude, :address => :address
-  after_validation :geocode, if: :address
-	after_validation :reverse_geocode
-  # after_validation :reverse_geocode if: :latitude && :longitude
+  after_validation :geocode, :reverse_geocode
+
 
   def nearby_wifi(dist)
 	data = Location.all
@@ -15,5 +14,3 @@ class Location < ActiveRecord::Base
 	sort_nearby_wifi =nearby_wifi.sort_by { |close| self.distance_to([close.latitude, close.longitude ])}
   end
 end
-
-# need to change lat, long to latitude longitude
