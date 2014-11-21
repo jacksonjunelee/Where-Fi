@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-	# before_action :authenticate,except: [:new, :create]
+	before_action :authenticate, except: [:new, :create]
 	# syntax wrong
 
 	def show
@@ -38,6 +38,20 @@ class UsersController < ApplicationController
 	def destroy
 		User.destroy(params[:id])
 		render :home
+	end
+
+	def add_location
+		user_location = Location.find(params[:location_id])
+		user = User.find(session[:current_user_id])
+		user.locations.push(user_location)
+		redirect_to user
+	end
+
+	def remove_location
+		user_location = Location.find(params[:location_id])
+		user = User.find(session[:current_user_id])
+		user.locations.destroy(user_location) if user.locations.include? user_location
+		redirect_to user
 	end
 
 	private

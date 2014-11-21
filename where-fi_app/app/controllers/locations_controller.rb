@@ -1,5 +1,7 @@
 class LocationsController < ApplicationController
 
+  before_action :authenticate, except: [:index, :show]
+  
   def index
     coordinates = Geocoder.coordinates(params[:location])
     @location = Location.new({latitude: coordinates[0], longitude: coordinates[1]})
@@ -36,6 +38,13 @@ class LocationsController < ApplicationController
     end
   end
   #edit, update, destory route
+
+  def edit
+  end
+
+  def update
+  end
+  
   private
   def location_params
   	params.require(:location).permit(:boro, :place_name, :details, :ssid, :address)

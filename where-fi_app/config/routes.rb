@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
-  resources :users, except: [:index]
+  resources :users, except: [:index] do
+  	member do
+  		post    ':location_id/' => 'users#add_location', as: :add_favorite_to
+  		delete  ':location_id/' => 'users#remove_location', as: :remove_favorite_to
+  	end
+  end
+
 
   resources :locations
 
