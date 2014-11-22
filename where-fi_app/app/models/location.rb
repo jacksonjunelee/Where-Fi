@@ -23,6 +23,18 @@ class Location < ActiveRecord::Base
   def nearby_wifi(dist)
   	data = Location.all
   	nearby_wifi = data.select { |spot| self.distance_to([spot.latitude,spot.longitude]) <= dist}
-  	sort_nearby_wifi = nearby_wifi.sort_by { |close| self.distance_to([close.latitude, close.longitude ])}
+  	sort_nearby_wifi = nearby_wifi.sort_by { |close| self.distance_to([close.latitude, close.longitude])}
   end
+
+  def add_to_fusion_table
+    table = ApplicationController.fusiontable
+    data = [{ 
+      "Boro"  => self.boro,
+      "Location"  => self.place_name,
+      "Latitude"  => self.latitude,
+      "Longitude" => self.longitude
+      }]
+    table.insert data
+  end
+
 end
