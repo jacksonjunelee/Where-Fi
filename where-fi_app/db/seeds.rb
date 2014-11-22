@@ -10,5 +10,6 @@ hotspots.each do |hotspot|
 		latitude: hotspot[14].to_f,
 		longitude: hotspot[15].to_f
 	})
+	sleep(2)
 end
 #query limit
