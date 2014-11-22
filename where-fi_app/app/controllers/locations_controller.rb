@@ -30,7 +30,7 @@ class LocationsController < ApplicationController
     	render :new
     end
   end
-  #edit, update, destory route
+  #edit, update, destroy route
 
   def edit
   end

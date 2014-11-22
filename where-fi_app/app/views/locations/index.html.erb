@@ -7,6 +7,4 @@
 <p><%= link_to "Show Details", location_path(near_wifi) %></p>
 <p><%= button_to "Add to Favorites", add_favorite_to_user_path(session[:current_user_id], near_wifi.id) if session[:current_user_id] %> </p>
 <br>
-<br>
-<br>
 <% end %>
