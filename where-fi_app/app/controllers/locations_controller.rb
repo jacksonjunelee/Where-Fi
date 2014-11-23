@@ -24,20 +24,13 @@ class LocationsController < ApplicationController
     # @location.latitude = coordinates[0]
     # @location.longitude = coordinates[1]
     if @location.save
-      table = ApplicationController.fusiontable
-      data = [{ "Boro"  => location_params[:boro],
-                "Location"  => location_params[:place_name],
-                "Latitude"  => location_params[:latitude],
-                "Longitude" => location_params[:longitude]}]
-      #make method in model (location model)
-  # need to fix table, incomplete
-         table.insert data
+      @location.add_to_fusion_table
     	redirect_to location_path(@location)
     else
     	render :new
     end
   end
-  #edit, update, destory route
+  #edit, update, destroy route
 
   def edit
   end
