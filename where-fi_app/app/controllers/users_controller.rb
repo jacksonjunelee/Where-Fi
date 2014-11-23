@@ -23,20 +23,33 @@ class UsersController < ApplicationController
 
 	def edit
 		@user = User.find(params[:id])
+		if @user != current_user
+			render :home
+		end
 	end
 
 	def update
 		@user = User.find(params[:id])
-		if @user.update(user_params)
-			redirect_to @user
+		if @user != current_user
+			render :home
 		else
-			render :edit
+			if @user.update(user_params)
+				redirect_to @user
+			else
+				render :edit
+			end
 		end
 	end
 
 	def destroy
-		User.destroy(params[:id])
-		render :home
+		@user = User.find(params[:id])
+		if @user != current_user
+			redirect_to @user
+		else
+			@user.destroy
+			session[:current_user_id] = nil 
+			render :home
+		end
 	end
 
 	def add_location
