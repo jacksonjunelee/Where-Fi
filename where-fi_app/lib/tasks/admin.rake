@@ -15,7 +15,6 @@ namespace :admin do
               "Longitude" => hotspot.longitude,
               "SSID" => hotspot.ssid}]
       @table.insert data
-      #figure rate problem
     end
   end
 end
