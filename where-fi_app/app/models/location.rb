@@ -28,7 +28,8 @@ class Location < ActiveRecord::Base
 
   def add_to_fusion_table
     table = ApplicationController.fusiontable
-    data = [{ 
+    data = [{
+			"OBJECTID" => self.id,
       "Boro"  => self.boro,
       "Location"  => self.place_name,
       "Latitude"  => self.latitude,
@@ -36,5 +37,25 @@ class Location < ActiveRecord::Base
       }]
     table.insert data
   end
+
+	def update_fusion_table
+		table = ApplicationController.fusiontable
+		data = [{
+			"OBJECTID" => self.id,
+			"Boro"  => self.boro,
+			"Location"  => self.place_name,
+			"Latitude"  => self.latitude,
+			"Longitude" => self.longitude
+			}]
+		row_id = table.select "ROWID", "WHERE OBJECTID=#{self.id.to_s}"
+		table.delete "#{row_id[0][:rowid]}".to_i
+		table.insert data
+	end
+
+	def delete_fusion_table
+		table = ApplicationController.fusiontable
+		row_id = table.select "ROWID", "WHERE OBJECTID=#{self.id.to_s}"
+		table.delete row_id[0][:rowid].to_i
+	end
 
 end

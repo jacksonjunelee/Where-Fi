@@ -1,7 +1,7 @@
 class LocationsController < ApplicationController
 
   before_action :authenticate, except: [:index, :show]
-  
+
   def index
     coordinates = Geocoder.coordinates(params[:location])
     @location = Location.new({latitude: coordinates[0], longitude: coordinates[1]})
@@ -20,9 +20,6 @@ class LocationsController < ApplicationController
 
   def create
     @location = Location.new(location_params)
-    # coordinates = Geocoder.coordinates(location_params[:address])
-    # @location.latitude = coordinates[0]
-    # @location.longitude = coordinates[1]
     if @location.save
       @location.add_to_fusion_table
     	redirect_to location_path(@location)
@@ -33,11 +30,27 @@ class LocationsController < ApplicationController
   #edit, update, destroy route
 
   def edit
+    @location = Location.find(params[:id])
   end
 
   def update
+    @location = Location.find(params[:id])
+    if @location.update(location_params)
+      @location.update_fusion_table
+      redirect_to location_path(@location)
+    else
+      redirect_to location_path(@location)
+    end
   end
-  
+
+
+  def destroy
+    @location = Location.find(params[:id])
+    Location.destroy(params[:id])
+    @location.delete_fusion_table
+    render :home
+  end
+
   private
   def location_params
   	params.require(:location).permit(:boro, :place_name, :details, :ssid, :address)
