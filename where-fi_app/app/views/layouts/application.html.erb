@@ -17,7 +17,7 @@
   <% end %>
   <br>
   <% if session[:current_user_id] %>
-    Welcome, <%= User.find(session[:current_user_id]).username %> |
+    Welcome, <%= current_user.username %> |
     <%= link_to "Log Out", sessions_path, method: :delete %>
   <% else %>
     <%= link_to "Sign Up", new_user_path %> |

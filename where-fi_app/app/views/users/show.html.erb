@@ -3,7 +3,7 @@
 <p>Name: <%= @user.full_name %></p>
 <p>User Since <%= @user.created_at %></p>
 
-<%= link_to "Edit", edit_user_path %><br>
+<%= button_to "Edit", edit_user_path, method: "get" %><br>
 <%= button_to "Delete", user_path(@user), method: :delete %>
 <% @user.locations.each do |location| %>
 		<%= location.place_name %>
