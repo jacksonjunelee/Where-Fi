@@ -5,7 +5,8 @@ class LocationsController < ApplicationController
   def index
     coordinates = Geocoder.coordinates(params[:location])
     @location = Location.new({latitude: coordinates[0], longitude: coordinates[1]})
-    @near_wifi = @location.nearby_wifi(params[:distance].to_f)
+    @radius = params[:distance][:miles].to_f
+    @near_wifi = @location.nearby_wifi(@radius)
   end
   #change to home, change to search_results
 
