@@ -12,7 +12,7 @@
     <%= label_tag(:address, 'Address') %>
     <%= text_field_tag(:location, params[:location]) %><br>
     <%= label_tag(:distance, "Search Radius") %>
-    <%= text_field_tag(:distance, params[:distance]) %><br>
+    <%= select(:distance, :miles, options_for_select([["2 Blocks", 0.1], ["6 Blocks", 0.3], ["1/2 Mile", 0.5], ["1 Mile", 1]])) %><br>
     <%= submit_tag("Search", name: :nil) %>
   <% end %>
   <br>
