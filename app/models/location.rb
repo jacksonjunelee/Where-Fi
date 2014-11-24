@@ -25,7 +25,7 @@ class Location < ActiveRecord::Base
   end
 
   def add_to_fusion_table
-    table = ApplicationController.fusiontable
+    table = FusionTableApi.get_fusion_table
     data = [{
 			"OBJECTID" => self.id,
       "Boro"  => self.boro,
@@ -37,7 +37,7 @@ class Location < ActiveRecord::Base
   end
 
 	def update_fusion_table
-		table = ApplicationController.fusiontable
+		table = FusionTableApi.get_fusion_table
 		data = [{
 			"OBJECTID" => self.id,
 			"Boro"  => self.boro,
@@ -51,7 +51,7 @@ class Location < ActiveRecord::Base
 	end
 
 	def delete_fusion_table
-		table = ApplicationController.fusiontable
+		table = FusionTableApi.get_fusion_table
 		row_id = table.select "ROWID", "WHERE OBJECTID=#{self.id.to_s}"
 		table.delete row_id[0][:rowid].to_i
 	end
