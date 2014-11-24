@@ -28,7 +28,6 @@ class LocationsController < ApplicationController
     	render :new
     end
   end
-  #edit, update, destroy route
 
   def edit
     @location = Location.find(params[:id])
@@ -38,12 +37,14 @@ class LocationsController < ApplicationController
     @location = Location.find(params[:id])
     if @location.update(location_params)
       @location.update_fusion_table
+      client = ApplicationController.twitter
+      client.update("I'm tweeting with @gem!")
+      binding.pry
       redirect_to location_path(@location)
     else
       redirect_to location_path(@location)
     end
   end
-
 
   def destroy
     @location = Location.find(params[:id])
@@ -65,6 +66,7 @@ class LocationsController < ApplicationController
     @things = Geocoder.search("#{searches_params} near #{@location.place_name}")
     render :searches
     #need to issue request
+    #dropdown
   end
 
   private
@@ -73,7 +75,7 @@ class LocationsController < ApplicationController
   end
 
   def searches_params
-    params.require("location").permit(:searches)
+    params.require(:location).permit(:searches)
   end
 
 end
