@@ -1,0 +1,18 @@
+<h1> Add a New Comment </h1>
+<% @comment.errors.full_messages.each do |msg| %>
+	<li> <%= msg %> </li>
+<% end %>
+
+<hr>
+
+<%= form_for @comment do |f| %>
+	<%= f.label :content %>
+	<%= f.text_area :content , size: "40 x 6" %><br>
+
+	<%# f.hidden_field :location_id, value: %>
+	
+	<%# f.hidden_field :user_id, value: current_user.id %>
+
+	<%= f.submit %> 
+
+<% end %>

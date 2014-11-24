@@ -1,2 +1,2 @@
 <% location = Location.new ({latitude: 40.70392141437475, longitude: -73.78477936324543}) %>
-<%= render partial: "locations/map", locals: { location: location ,radius: 'all', width: 800, height: 600 } %>
+<%= render partial: "locations/map", locals: { location: location, zoom: convert_radius_to_zoom('all'), width: 800, height: 600 } %>
