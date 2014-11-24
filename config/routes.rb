@@ -12,7 +12,7 @@ Rails.application.routes.draw do
       get 'chart' => 'locations#chart', as: :chart
       get 'searches' => 'locations#searches', as: :searches
     end
-    resources :comments, only: [:new, :create]
+    resources :comments, only: [:new, :create, :destroy]
   end
 
   get 'sessions/new' => 'sessions#new', as: 'login'

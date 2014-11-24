@@ -12,11 +12,11 @@ class LocationsController < ApplicationController
 
   def show
     @location = Location.find(params[:id])
+    @users = User.all
   end
 
   def new
     @location = Location.new
-    #set session
   end
 
   def create
@@ -28,7 +28,6 @@ class LocationsController < ApplicationController
     	render :new
     end
   end
-  #edit, update, destroy route
 
   def edit
     @location = Location.find(params[:id])
