@@ -18,10 +18,10 @@ class ApplicationController < ActionController::Base
 
   def self.twitter
     Twitter::REST::Client.new do |config|
-    config.consumer_key        = "kqMPtcO168DpLDitFCcT7lKoE"
-    config.consumer_secret     = "DqAbEyfxacCL9fEWJGbTGv0Ed2jrJsjir4oFQQq940Pb9OEZxP"
-    config.access_token        = "2890858053-8NsYSfVCNZMYEGoqR8WZdh7kamM9FmuTgUAcNg9"
-    config.access_token_secret = "lWcB87UqB8WMAvdcXqdS1r9YeJBawtkA8bLpkdRm7RlN3"
+      config.consumer_key        = ENV["TWITTER_CONSUMER_KEY"]
+      config.consumer_secret     = ENV["TWITTER_CONSUMER_SECRET"]
+      config.access_token        = ENV["TWITTER_ACCESS_TOKEN"]
+      config.access_token_secret = ENV["TWITTER_ACCESS_TOKEN_SECRET"]
     end
   end
 
