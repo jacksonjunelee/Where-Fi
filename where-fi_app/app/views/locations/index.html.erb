@@ -1,16 +1,13 @@
 <h1> Nearby Wifi Hotspots </h1>
 <% #I am adding the @location.latitude and @location.longitude as the center of the map %>
 
-<%  zoom = { 0.1 => 18, 0.3 => 16, 0.5 => 14, 1.0 => 13 } %>
-
-
-<iframe width="600" height="300" scrolling="no" frameborder="no" src="https://www.google.com/fusiontables/embedviz?q=select+col6+from+1BupYHGSvfMG7EzT8m5_b-_pAE0fHWjr-9dAEiKgD&amp;viz=MAP&amp;h=false&amp;lat=<%= @location.latitude %>&amp;lng=<%= @location.longitude %>&amp;t=1&amp;z=<%= (zoom[@radius]) %>&amp;l=col6&amp;y=2&amp;tmplt=2&amp;hml=TWO_COL_LAT_LNG"></iframe>
+<%= render partial: "map", locals: { location: @location, radius: @radius, width: 600, height: 300 } %>
 
 <h3><%= "No Hotspots in your search radius" if @near_wifi.empty? %></h3>
 <% @near_wifi.each do |near_wifi| %>
-<p>Place: <%= near_wifi.place_name %></p>
-<p>Address:<%= near_wifi.address %></p>
-<p>Distance: <%= @location.distance_to(near_wifi) %>
-<p><%= link_to "Show Details", location_path(near_wifi) %></p>
-<p><%= button_to "Add to Favorites", add_favorite_to_user_path(session[:current_user_id], near_wifi.id) if session[:current_user_id] %></p>
+	<p>Place: <%= near_wifi.place_name %></p>
+	<p>Address:<%= near_wifi.address %></p>
+	<p>Distance: <%= @location.distance_to(near_wifi) %>
+	<p><%= link_to "Show Details", location_path(near_wifi) %></p>
+	<p><%= button_to "Add to Favorites", add_favorite_to_user_path(session[:current_user_id], near_wifi.id) if session[:current_user_id] %></p>
 <% end %>
