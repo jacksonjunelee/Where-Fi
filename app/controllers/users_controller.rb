@@ -13,6 +13,7 @@ class UsersController < ApplicationController
 	def create
 		@user = User.new(user_params)
 		if @user.save
+			flash[:success] = "User Created! Please Log-in Below."
 			redirect_to @user
 		else
 			render :new
@@ -55,7 +56,7 @@ class UsersController < ApplicationController
 		user_location = Location.find(params[:location_id])
 		user = User.find(session[:current_user_id])
 		user.locations.push(user_location)
-		user_location.fav_point = (1 + user_location.fav_point)
+		user_location.fav_point += 1
 		user_location.save
 		redirect_to user
 	end
@@ -64,6 +65,8 @@ class UsersController < ApplicationController
 		user_location = Location.find(params[:location_id])
 		user = User.find(session[:current_user_id])
 		user.locations.destroy(user_location) if user.locations.include? user_location
+		user_location.fav_point -= 1
+		user_location.save
 		redirect_to user
 	end
 
