@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-	before_action :authenticate, except: [:new, :create, :forgotten_password, :get_password]
+	before_action :authenticate, except: [:new, :create]
 
 	def show
 		@user = User.find(params[:id])
@@ -68,19 +68,6 @@ class UsersController < ApplicationController
 		user_location.fav_point -= 1
 		user_location.save
 		redirect_to user
-	end
-
-	def forgotten_password
-		render :forgot
-		user = User.all
-		@user = user.find{ |user| user.first_name == params[:user_first_name] && user.last_name == params[:user_last_name]}
-	end
-
-	def get_password
-		user = User.all
-		@user = user.find{ |user| user.first_name == params[:user_first_name] && user.last_name == params[:user_last_name]}
-		@user.password = params[:user_password]
-		render :get
 	end
 
 	private
