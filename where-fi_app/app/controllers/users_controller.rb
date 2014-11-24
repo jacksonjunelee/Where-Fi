@@ -47,7 +47,7 @@ class UsersController < ApplicationController
 			redirect_to @user
 		else
 			@user.destroy
-			session[:current_user_id] = nil 
+			session[:current_user_id] = nil
 			render :home
 		end
 	end
@@ -56,6 +56,8 @@ class UsersController < ApplicationController
 		user_location = Location.find(params[:location_id])
 		user = User.find(session[:current_user_id])
 		user.locations.push(user_location)
+		user_location.fav_point = (1 + user_location.fav_point)
+		user_location.save
 		redirect_to user
 	end
 

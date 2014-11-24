@@ -52,8 +52,28 @@ class LocationsController < ApplicationController
     render :home
   end
 
+  def chart
+    @location = Location.find(params[:id])
+    @near_wifi = @location.nearby_wifi(0.5)
+    #@near_wifi = Location.near(@location,0.5)
+    render :chart
+      #need to check radius
+  end
+
+  def searches
+    @location = Location.find(params[:id])
+    @things = Geocoder.search("#{searches_params} near #{@location.place_name}")
+    render :searches
+    #need to issue request
+  end
+
   private
   def location_params
   	params.require(:location).permit(:boro, :place_name, :details, :ssid, :address)
   end
+
+  def searches_params
+    params.require("location").permit(:searches)
+  end
+
 end
