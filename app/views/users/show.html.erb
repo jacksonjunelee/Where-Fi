@@ -1,0 +1,12 @@
+
+<p>Username: <%= @user.username %></p>
+<p>Name: <%= @user.full_name %></p>
+<p>User Since <%= @user.created_at %></p>
+
+<%= button_to "Edit", edit_user_path, method: "get" %><br>
+<%= button_to "Delete", user_path(@user), method: :delete %>
+<% @user.locations.each do |location| %>
+		<%= location.place_name %>
+		<%= button_to "Remove Favorite Location from Favorites", remove_favorite_to_user_path(session[:current_user_id],location.id),method: :delete %>
+		<%= render partial: "locations/map", locals: { location: location, zoom: convert_radius_to_zoom(0.1), height: 200, width: 200 } %>
+<% end %>

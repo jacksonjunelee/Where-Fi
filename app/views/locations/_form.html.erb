@@ -1,0 +1,28 @@
+<% @location.errors.full_messages.each do |msg| %>
+  <li> <%= msg %> </li>
+<% end %>
+
+<hr>
+
+
+<%= form_for @location do |f| %>
+  <%= f.label :boro %>
+  <%= f.text_field :boro %><br>
+
+  <%= f.label :place_name %>
+  <%= f.text_field :place_name %><br>
+
+  <%= f.label :details %>
+  <%= f.text_area :details, size: "40 x 6" %><br>
+
+  <%= f.label :ssid %>
+  <%= f.text_field :ssid %><br>
+
+  <%= f.label :address %>
+  <%= f.text_field :address %><br>
+
+  <%= f.hidden_field :latitude %>
+  <%= f.hidden_field :longitude %>
+
+  <%= f.submit %>
+<% end %>
