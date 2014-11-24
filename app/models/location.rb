@@ -3,6 +3,7 @@ class Location < ActiveRecord::Base
   validate :has_address_or_coordinates
 	#need to test address without address or cooridnates
   has_and_belongs_to_many :users
+  has_many :comments
   geocoded_by :address, :latitude => :latitude, :longitude => :longitude
 	#need to be tested
   reverse_geocoded_by :latitude, :longitude, :address => :address
