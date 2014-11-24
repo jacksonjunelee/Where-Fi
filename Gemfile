@@ -32,8 +32,6 @@ gem 'fusion_tables'
 gem 'httparty'
 gem 'twitter'
 
-gem 'rails_12factor', group: :production
-
 group :development do
   gem 'rspec-rails'
   gem 'rspec-collection_matchers'

@@ -3,7 +3,7 @@ class LocationsController < ApplicationController
   before_action :authenticate, except: [:index, :show]
 
   def index
-    coordinates = Geocoder.coordinates(params[:location])
+    coordinates = Geocoder.coordinates(params[:location] + " New York City")
     @location = Location.new({latitude: coordinates[0], longitude: coordinates[1]})
     @radius = params[:distance][:miles].to_f
     if params[:sort][:sort_value] == 1
