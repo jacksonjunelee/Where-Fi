@@ -6,6 +6,7 @@ class Location < ActiveRecord::Base
   #this code above does not work as we expect.
   #we need to either validate the presence of a lat and long OR an address.
   has_and_belongs_to_many :users
+  has_many :comments
   geocoded_by :address, :latitude => :latitude, :longitude => :longitude
 	#need to be tested
   reverse_geocoded_by :latitude, :longitude, :address => :address

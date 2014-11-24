@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   		delete  ':location_id/' => 'users#remove_location', as: :remove_favorite_to
   	end
   end
+  resources :comments, only: [:new, :create]
 
 
   resources :locations
