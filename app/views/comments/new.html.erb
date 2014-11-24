@@ -5,14 +5,15 @@
 
 <hr>
 
-<%= form_for @comment do |f| %>
+<%= form_for [@location, @comment] do |f| %>
 	<%= f.label :content %>
 	<%= f.text_area :content , size: "40 x 6" %><br>
 
-	<%# f.hidden_field :location_id, value: %>
+	<%= f.hidden_field :location_id, value: params[:location_id] %>
 	
-	<%# f.hidden_field :user_id, value: current_user.id %>
+	<%= f.hidden_field :user_id, value: current_user.id %>
+	
 
-	<%= f.submit %> 
+	<%= f.submit "Create new comment" %> 
 
 <% end %>

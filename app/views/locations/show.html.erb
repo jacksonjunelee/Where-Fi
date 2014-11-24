@@ -15,6 +15,14 @@
 
 <%= link_to "Edit Location", edit_location_path %><br>
 
-<%= link_to "Add a Comment?", new_comment_path %><br>
+<%= link_to "Add a Comment?", new_location_comment_path(@location) %><br><br>
+
+<h3> Comments for <%= @location.place_name %> </h3>
+<% @location.comments.each do |one_comment| %>
+<h4>Username:<%= @users.find(one_comment.user_id).username %></h4>
+<p>Content:<%= one_comment.content %><br><p>
+	<%= button_to "Delete Comment", location_comment_path(@location, one_comment.id), method: :delete %>
+	<hr>
+<% end %> 
 
 <%= link_to "Compare Nearby Wifi", chart_location_path %>
