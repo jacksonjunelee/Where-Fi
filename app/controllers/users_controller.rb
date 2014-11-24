@@ -64,7 +64,13 @@ class UsersController < ApplicationController
 		user_location = Location.find(params[:location_id])
 		user = User.find(session[:current_user_id])
 		user.locations.destroy(user_location) if user.locations.include? user_location
+		user_location.fav_point = (-1 + user_location.fav_point)
+		user_location.save
 		redirect_to user
+	end
+
+	def forgotten_password
+		render :forgot
 	end
 
 	private

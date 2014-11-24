@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'users/forgotten_password' => 'users#forgotten_password'
   resources :users, except: [:index] do
   	member do
   		post    ':location_id/' => 'users#add_location', as: :add_favorite_to
@@ -10,7 +11,6 @@ Rails.application.routes.draw do
   resources :locations do
     member do
       get 'chart' => 'locations#chart', as: :chart
-      get 'searches' => 'locations#searches', as: :searches
     end
   end
 

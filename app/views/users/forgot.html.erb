@@ -1,0 +1,9 @@
+<h1> Forgot Password Form </h1>
+
+  <%= form_tag(users_forgotten_password_path, method: :get) do%>
+    <%= label_tag(:first, 'First Name') %>
+    <%= text_field_tag(:location, params[:first_name]) %><br>
+    <%= label_tag(:last, "Last Name") %>
+    <%= text_field_tag(:location, params[:last_name]) %><br>
+    <%= submit_tag("Get Password", name: :nil) %>
+  <% end %>

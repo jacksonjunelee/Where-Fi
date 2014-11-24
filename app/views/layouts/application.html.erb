@@ -13,6 +13,8 @@
     <%= text_field_tag(:location, params[:location]) %><br>
     <%= label_tag(:distance, "Search Radius") %>
     <%= select(:distance, :miles, options_for_select([["2 Blocks", 0.1], ["6 Blocks", 0.3], ["1/2 Mile", 0.5], ["1 Mile", 1]])) %><br>
+    <%= label_tag(:Sort_by, 'Sort by') %>
+    <%= select(:sort, :sort_value, options_for_select([["Distance", 1], ["Most Popular", 2]])) %><br>
     <%= submit_tag("Search", name: :nil) %>
   <% end %>
   <br>

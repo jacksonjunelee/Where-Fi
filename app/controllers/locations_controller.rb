@@ -66,21 +66,10 @@ class LocationsController < ApplicationController
       #need to check radius
   end
 
-  def searches
-    @location = Location.find(params[:id])
-    @things = Geocoder.search("#{searches_params} near #{@location.place_name}")
-    render :searches
-    #need to issue request
-    #dropdown
-  end
-
   private
+  
   def location_params
   	params.require(:location).permit(:boro, :place_name, :details, :ssid, :address)
-  end
-
-  def searches_params
-    params.require(:location).permit(:searches)
   end
 
 end
