@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :locations do
     member do
       get 'chart' => 'locations#chart', as: :chart
+      get 'searches' => 'locations#searches', as: :searches
     end
   end
 

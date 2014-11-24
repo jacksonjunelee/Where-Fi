@@ -14,3 +14,8 @@
 
 <%= link_to "Edit Location", edit_location_path %><br>
 <%= link_to "Compare Nearby Wifi", chart_location_path %>
+  <%= form_tag(searches_location_path(@location), method: :get) do%>
+    <%= label_tag(:Search, 'Cafe,Hotel,Bar?') %>
+    <%= text_field_tag("location", params[:searches]) %>
+    <%= button_tag("Search")%>
+  <% end %>
