@@ -26,6 +26,7 @@ class UsersController < ApplicationController
 		end
 	end
 #change redirection if user not current user
+
 	def update
 		@user = User.find(params[:id])
 		if @user != current_user
