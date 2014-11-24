@@ -11,5 +11,5 @@ hotspots.each do |hotspot|
 		longitude: hotspot[15].to_f,
 		fav_point: 0
 	})
-	sleep(2)
+
 end

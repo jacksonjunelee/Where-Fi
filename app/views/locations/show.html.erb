@@ -4,15 +4,6 @@
 
 <% #wanna render a view, need to figure out a better way to change zoom.   %>
 
-<%= form_tag(locations_path), method: :get) do%>
-  <%= label_tag(:Sort_by, 'Sort by') %>
-  <%= select(:sort, :sort_value, options_for_select([["Distance", 1], ["Most Popular", 2]])) %><br>
-  <%= button_tag("Sort")%>
-<% end %><%= form_tag(searches_location_path(@location), method: :get) do%>
-  <%= label_tag(:Search, 'Cafe,Hotel,Bar?') %>
-  <%= text_field_tag("location", params[:searches]) %>
-  <%= button_tag("Search")%>
-<% end %>
 <p>Name: <%= @location.place_name %></p>
 <p>Borough: <%= @location.boro %></p>
 <p>Details: <%= @location.details %></p>
@@ -35,9 +26,3 @@
 <% end %> 
 
 <%= link_to "Compare Nearby Wifi", chart_location_path %>
-  <%= form_tag(searches_location_path(@location), method: :get) do%>
-    <%= label_tag(:Search, 'Cafe,Hotel,Bar?') %>
-    <%= text_field_tag("location", params[:searches]) %>
-    <%= button_tag("Search")%>
-  <% end %>
-
