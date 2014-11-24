@@ -1,0 +1,13 @@
+<h1> Reset Password Form </h1>
+
+  <%= form_tag(users_forgotten_password, method: :post) do%>
+    <%= label_tag(:first, 'First Name') %>
+    <%= text_field_tag(:user_first_name) %><br>
+    <%= label_tag(:last, "Last Name") %>
+    <%= text_field_tag(:user_last_name) %><br>
+    <%= label_tag(:last, "password") %>
+    <%= text_field_tag(:user_password) %><br>
+    <%= label_tag(:last, "password confirmation") %>
+    <%= text_field_tag(:user_password_confirmation) %><br>
+    <%= submit_tag("Get Password") %>
+  <% end %>
