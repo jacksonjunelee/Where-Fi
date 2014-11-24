@@ -1,7 +1,7 @@
 <h1> Nearby Wifi Hotspots </h1>
 <% #I am adding the @location.latitude and @location.longitude as the center of the map %>
 
-<%= render partial: "map", locals: { location: @location, radius: @radius, width: 600, height: 300 } %>
+<%= render partial: "map", locals: { location: @location, zoom: convert_radius_to_zoom(@radius), width: 600, height: 300 } %>
 
 <h3><%= "No Hotspots in your search radius" if @near_wifi.empty? %></h3>
 <% @near_wifi.each do |near_wifi| %>

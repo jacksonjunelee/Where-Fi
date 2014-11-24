@@ -1,6 +1,6 @@
 <h1> Show Locations Page </h1>
 
-<%= render partial: "map", locals: { location: @location, radius: 0.1, width: 600, height: 300 } %>
+<%= render partial: "map", locals: { location: @location, zoom: convert_radius_to_zoom(0.1), width: 600, height: 300 } %>
 
 <% #wanna render a view, need to figure out a better way to change zoom.   %>
 
