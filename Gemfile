@@ -30,6 +30,9 @@ gem 'geocoder'
 gem 'awesome_print',  group: :development
 gem 'fusion_tables'
 gem 'httparty'
+gem 'twitter'
+
+gem 'rails_12factor', group: :production
 
 group :development do
   gem 'rspec-rails'
@@ -40,8 +43,10 @@ end
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+
 gem 'rails_12factor', group: :production
 gem 'googlecharts'
+
 
 # Use unicorn as the app server
 # gem 'unicorn'

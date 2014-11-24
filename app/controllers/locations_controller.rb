@@ -6,7 +6,11 @@ class LocationsController < ApplicationController
     coordinates = Geocoder.coordinates(params[:location])
     @location = Location.new({latitude: coordinates[0], longitude: coordinates[1]})
     @radius = params[:distance][:miles].to_f
-    @near_wifi = @location.nearby_wifi(@radius)
+    if params[:sort][:sort_value] == 1
+      @near_wifi = @location.nearby_wifi(@radius)
+    else
+      @near_wifi = @location.nearby_wifi(@radius).sort_by { |location| location.fav_point}
+    end
   end
   #change to home, change to search_results
 
@@ -23,6 +27,8 @@ class LocationsController < ApplicationController
     @location = Location.new(location_params)
     if @location.save
       @location.add_to_fusion_table
+      client = ApplicationController.twitter
+      client.update("New Location added, #{@location.place_name} has free hotspot")
     	redirect_to location_path(@location)
     else
     	render :new
@@ -37,12 +43,13 @@ class LocationsController < ApplicationController
     @location = Location.find(params[:id])
     if @location.update(location_params)
       @location.update_fusion_table
+      client = ApplicationController.twitter
+      client.update("#{@location.place_name} has been edited")
       redirect_to location_path(@location)
     else
       redirect_to location_path(@location)
     end
   end
-
 
   def destroy
     @location = Location.find(params[:id])
@@ -64,6 +71,7 @@ class LocationsController < ApplicationController
     @things = Geocoder.search("#{searches_params} near #{@location.place_name}")
     render :searches
     #need to issue request
+    #dropdown
   end
 
   private
@@ -72,7 +80,7 @@ class LocationsController < ApplicationController
   end
 
   def searches_params
-    params.require("location").permit(:searches)
+    params.require(:location).permit(:searches)
   end
 
 end
