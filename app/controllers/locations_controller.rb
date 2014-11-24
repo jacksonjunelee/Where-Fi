@@ -27,7 +27,7 @@ class LocationsController < ApplicationController
     @location = Location.new(location_params)
     if @location.save
       @location.add_to_fusion_table
-      client = ApplicationController.twitter
+      client = TwitterApi.get_client
       client.update("New Location added, #{@location.place_name} has free hotspot")
     	redirect_to location_path(@location)
     else
@@ -43,7 +43,7 @@ class LocationsController < ApplicationController
     @location = Location.find(params[:id])
     if @location.update(location_params)
       @location.update_fusion_table
-      client = ApplicationController.twitter
+      client = TwitterApi.get_client
       client.update("#{@location.place_name} has been edited")
       redirect_to location_path(@location)
     else
