@@ -7,7 +7,12 @@ Rails.application.routes.draw do
   end
 
 
-  resources :locations
+  resources :locations do
+    member do
+      get 'chart' => 'locations#chart', as: :chart
+      get 'searches' => 'locations#searches', as: :searches
+    end
+  end
 
   get 'sessions/new' => 'sessions#new', as: 'login'
   post 'sessions'    => 'sessions#create'
