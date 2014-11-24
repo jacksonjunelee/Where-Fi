@@ -8,8 +8,8 @@ hotspots.each do |hotspot|
 		place_name: hotspot[12],
 		ssid: hotspot[21],
 		latitude: hotspot[14].to_f,
-		longitude: hotspot[15].to_f
+		longitude: hotspot[15].to_f,
+		fav_point: 0
 	})
 	sleep(2)
 end
-#query limit

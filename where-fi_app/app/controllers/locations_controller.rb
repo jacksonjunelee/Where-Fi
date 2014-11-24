@@ -52,6 +52,15 @@ class LocationsController < ApplicationController
     render :home
   end
 
+  def chart
+    @location = Location.find(params[:id])
+    @near_wifi = @location.nearby_wifi(0.5)
+    render :chart
+      #need to check radius
+    @chart = Gchart.bar(:title => "Comparing #{@location.place_name} to Other Locations",:title_color => '0000FFFF',:title_size => '20',:theme => :thirty7signals,:legend => 'legend label')
+
+  end
+
   private
   def location_params
   	params.require(:location).permit(:boro, :place_name, :details, :ssid, :address)
