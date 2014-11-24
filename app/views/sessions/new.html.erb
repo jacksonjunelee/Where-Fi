@@ -1,5 +1,7 @@
 <h1>Log In</h1>
 
+<h2><%= flash[:success] %></h2>
+
 <%= form_tag sessions_path do %>
   <%= label_tag :username %><br>
   <%= text_field_tag :username %><br>
