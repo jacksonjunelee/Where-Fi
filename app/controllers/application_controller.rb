@@ -16,6 +16,8 @@ class ApplicationController < ActionController::Base
     @login = @ft.show_tables[0]
   end
 
+  #this one is called on the locations model.  
+
   def self.twitter
     Twitter::REST::Client.new do |config|
       config.consumer_key        = ENV["TWITTER_CONSUMER_KEY"]
@@ -24,6 +26,8 @@ class ApplicationController < ActionController::Base
       config.access_token_secret = ENV["TWITTER_ACCESS_TOKEN_SECRET"]
     end
   end
+
+  #this is called
 
   def authenticate
     redirect_to login_path unless current_user
