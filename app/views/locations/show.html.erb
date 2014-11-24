@@ -1,6 +1,6 @@
 <h1> Show Locations Page </h1>
 
-<%= render partial: "map", locals: { location: @location, radius: 0.1, width: 600, height: 300 } %>
+<%= render partial: "map", locals: { location: @location, zoom: convert_radius_to_zoom(0.1), width: 600, height: 300 } %>
 
 <% #wanna render a view, need to figure out a better way to change zoom.   %>
 
@@ -23,9 +23,13 @@
 <br>
 
 <%= link_to "Edit Location", edit_location_path %><br>
+
+<%= link_to "Add a Comment?", new_comment_path %><br>
+
 <%= link_to "Compare Nearby Wifi", chart_location_path %>
   <%= form_tag(searches_location_path(@location), method: :get) do%>
     <%= label_tag(:Search, 'Cafe,Hotel,Bar?') %>
     <%= text_field_tag("location", params[:searches]) %>
     <%= button_tag("Search")%>
   <% end %>
+
