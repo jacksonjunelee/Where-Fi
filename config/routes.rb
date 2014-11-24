@@ -5,14 +5,14 @@ Rails.application.routes.draw do
   		delete  ':location_id/' => 'users#remove_location', as: :remove_favorite_to
   	end
   end
-  resources :comments, only: [:new, :create]
-
+  
 
   resources :locations do
     member do
       get 'chart' => 'locations#chart', as: :chart
       get 'searches' => 'locations#searches', as: :searches
     end
+    resources :comments, only: [:new, :create]
   end
 
   get 'sessions/new' => 'sessions#new', as: 'login'
