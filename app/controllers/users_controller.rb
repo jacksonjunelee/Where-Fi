@@ -1,12 +1,10 @@
 class UsersController < ApplicationController
 
 	before_action :authenticate, except: [:new, :create]
-	# syntax wrong
 
 	def show
 		@user = User.find(params[:id])
 	end
-	#need authenticate
 
 	def new
 		@user = User.new
@@ -27,6 +25,7 @@ class UsersController < ApplicationController
 			render :home
 		end
 	end
+#change redirection if user not current user
 
 	def update
 		@user = User.find(params[:id])

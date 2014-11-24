@@ -30,6 +30,7 @@ gem 'geocoder'
 gem 'awesome_print',  group: :development
 gem 'fusion_tables'
 gem 'httparty'
+gem 'twitter'
 
 group :development do
   gem 'rspec-rails'

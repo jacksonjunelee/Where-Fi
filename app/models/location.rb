@@ -1,10 +1,7 @@
 class Location < ActiveRecord::Base
 	validates_presence_of :ssid, :place_name
   validate :has_address_or_coordinates
-  #we need this line to validate either address or lat/long
-	#validates_presence_of :address || :latitude, :longitude
-  #this code above does not work as we expect.
-  #we need to either validate the presence of a lat and long OR an address.
+	#need to test address without address or cooridnates
   has_and_belongs_to_many :users
   has_many :comments
   geocoded_by :address, :latitude => :latitude, :longitude => :longitude

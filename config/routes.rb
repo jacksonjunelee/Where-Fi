@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   end
   resources :comments, only: [:new, :create]
 
-
   resources :locations do
     member do
       get 'chart' => 'locations#chart', as: :chart
