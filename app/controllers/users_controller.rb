@@ -71,11 +71,14 @@ class UsersController < ApplicationController
 
 	def forgotten_password
 		render :forgot
+		user = User.all
+		@user = user.find{ |user| user.first_name == params[:user_first_name] && user.last_name == params[:user_last_name]}
 	end
 
 	def get_password
 		user = User.all
-		@user = user.find_by{ |user| user.first_name == user_params[:first_name] && user.last_name == user_params[:last_name] }
+		@user = user.find{ |user| user.first_name == params[:user_first_name] && user.last_name == params[:user_last_name]}
+		@user.password = params[:user_password]
 		render :get
 	end
 
