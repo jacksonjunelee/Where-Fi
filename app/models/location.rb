@@ -27,30 +27,29 @@ class Location < ActiveRecord::Base
 
   def add_to_fusion_table
     table = FusionTableApi.get_fusion_table
-    data = [{
-			"OBJECTID" => self.id,
-      "Boro"  => self.boro,
-      "Location"  => self.place_name,
-      "Latitude"  => self.latitude,
-      "Longitude" => self.longitude
-      }]
+    data = self.fusion_table_data
     table.insert data
   end
 
 	def update_fusion_table
 		table = FusionTableApi.get_fusion_table
-		data = [{
-			"OBJECTID" => self.id,
-			"Boro"  => self.boro,
-			"Location"  => self.place_name,
-			"Latitude"  => self.latitude,
-			"Longitude" => self.longitude
-			}]
+		data = self.fusion_table_data
 		row_id = table.select "ROWID", "WHERE OBJECTID=#{self.id.to_s}"
 		table.delete "#{row_id[0][:rowid]}".to_i
 		table.insert data
 	end
 	#method for data
+
+  def fusion_table_data
+    [{
+      "OBJECTID" => self.id,
+      "Boro"  => self.boro,
+      "Location"  => self.place_name,
+      "Latitude"  => self.latitude,
+      "Longitude" => self.longitude
+      }]
+  end
+
 
 	def delete_fusion_table
 		table = FusionTableApi.get_fusion_table
