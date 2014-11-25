@@ -6,22 +6,34 @@
 
 <% #I deleted boro. I think the abbreviations cause confusion.  %>
 
-<%= form_for @location do |f| %>
-
+<%= form_for @location, html: {class: "pure-form pure-form-aligned"} do |f| %>
+<div class="pure-control-group">
   <%= f.label :place_name %>
   <%= f.text_field :place_name %><br>
+</div>
 
+<div class="pure-control-group">
   <%= f.label :details %>
   <%= f.text_area :details, size: "40 x 6" %><br>
+</div>
 
+<div class="pure-control-group">
   <%= f.label :ssid %>
   <%= f.text_field :ssid %><br>
+</div>
 
+<div class="pure-control-group">
   <%= f.label :address %>
   <%= f.text_field :address %><br>
+</div>
 
+<div class="pure-control-group">
   <%= f.hidden_field :latitude %>
   <%= f.hidden_field :longitude %>
+</div>
 
+<div class="milk">
   <%= f.submit %>
+</div>
+
 <% end %>

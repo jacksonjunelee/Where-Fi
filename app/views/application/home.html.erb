@@ -2,12 +2,29 @@
 
 <% location = Location.new ({latitude: 40.70392141437475, longitude: -73.78477936324543}) %>
 
-<%= render partial: "locations/map", locals: { location: location, zoom: convert_radius_to_zoom('all'), width: 800, height: 600 } %>
+<table>
 
-
-<% client = TwitterApi.get_client %>
-<% client.user_timeline[0..4].each do |post| %>
-	<blockquote class="twitter-tweet" lang="en"><p><%= post.text %></p>&mdash; wherefi (@Where__Fi) <a href="https://twitter.com/Where__Fi/status/<%= post.id %>"><%= post.created_at %></a></blockquote>
-	<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-	<br>
-<% end %>
+<div class="hometable" >
+      <table >
+          <tr id ="homeheader">
+              <td >
+                  Map
+              </td>
+							<td>
+									Twitter Feed
+							</td>
+          </tr>
+          <tr>
+              <td id = "moo">
+									<%= render partial: "locations/map", locals: { location: location, zoom: convert_radius_to_zoom('all'), width: 800, height: 600 } %>
+              </td>
+              <td>
+                <% client = TwitterApi.get_client %>
+									<% client.user_timeline[0..4].each do |post| %>
+										<blockquote class="twitter-tweet" lang="en"><p><%= post.text %></p>&mdash; wherefi (@Where__Fi) <a href="https://twitter.com/Where__Fi/status/<%= post.id %>"><%= post.created_at %></a></blockquote>
+										<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+									<% end %>
+              </td>
+          </tr>
+      </table>
+  </div>
