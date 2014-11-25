@@ -7,7 +7,7 @@
 <% @near_wifi.each do |near_wifi| %>
 	<p>Place: <%= near_wifi.place_name %></p>
 	<p>Address:<%= near_wifi.address %></p>
-	<p>Distance: <%= @location.distance_to(near_wifi) %>
+	<p>Distance: <%= @location.distance_to(near_wifi).round(2) %> Miles </p>
 	<p><%= link_to "Show Details", location_path(near_wifi) %></p>
 	<p><%= button_to "Add to Favorites", add_favorite_to_user_path(session[:current_user_id], near_wifi.id) if session[:current_user_id] %></p>
 <% end %>
