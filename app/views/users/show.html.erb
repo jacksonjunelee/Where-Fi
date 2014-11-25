@@ -1,12 +1,16 @@
+<p><strong>Username: </strong><%= @user.username %></p>
+<p><strong>Name: </strong><%= @user.full_name %></p>
+<p><strong>User Since: </strong><%= @user.sign_up_date %></p>
 
-<p><strong>Username:</strong> <%= @user.username %></p>
-<p><strong>Name:</strong> <%= @user.full_name %></p>
-<p><strong>User Since:</strong> <%= @user.sign_up_date %></p>
 
 <%= button_to "Edit", edit_user_path, method: "get" %><br>
 <%= button_to "Delete", user_path(@user), method: :delete %>
+<div class = "comments_container">
 <% @user.locations.uniq.each do |location| %>
-		<%= location.place_name %>
-		<%= button_to "Remove Favorite Location from Favorites", remove_favorite_to_user_path(session[:current_user_id], location.id), method: :delete %>
+	<div class = "users" >
+		<strong><%= location.place_name %></strong><br>
 		<%= render partial: "locations/map", locals: { location: location, zoom: convert_radius_to_zoom(0.1), height: 200, width: 200 } %>
-<% end %>
+		<%= button_to "Remove Favorite Location from Favorites", remove_favorite_to_user_path(session[:current_user_id], location.id), method: :delete %>
+		</div>
+	<% end %>
+</div>

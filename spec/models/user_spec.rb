@@ -16,7 +16,6 @@ describe User do
 		password_confirmation: "hunter2"
 	)}
 
-
 	it "is valid with a username, first_name, last_name and password" do
 		expect(hari).to be_valid
 	end
