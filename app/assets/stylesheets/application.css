@@ -24,6 +24,15 @@ body {
 	font-family: sans-serif;
 }
 
+#align {
+	text-align:center;
+	width: 25%;
+}
+
+#image{
+
+}
+
 .hometable {
 	width:100%;
 	border:1px solid #000000;
@@ -42,10 +51,6 @@ body {
   border-bottom: solid black;
 }
 
-#divbox {
-  text-align: center;
-
-}
 #moo {
   vertical-align: top;
 }
@@ -62,7 +67,7 @@ body {
 	font-size: 100px;
 }
 
-.milk{
+.button_center {
 	position:relative;
 	right: -200px;
 }
