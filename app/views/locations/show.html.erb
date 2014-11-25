@@ -1,18 +1,24 @@
 <h1> Location Details </h1>
 
-<div id = "container">
-	<div class = "location_details" >
-<p>Name: <%= @location.place_name %></p>
-<p>Details: <%= @location.details %></p>
-<p>Wifi Network Name: <%= @location.ssid %></p>
-<p>Address: <%= @location.address %></p>
-	</div>
-	<div class = "map">
-<%= render partial: "map", locals: { location: @location, zoom: convert_radius_to_zoom(0.1), width: 600, height: 300 } %>
-	</div>
+<div class = "container">
+	<table id = "table">
+		<tr>
+			<td id = "location_details" >
+				<p><strong>Name: </strong><%= @location.place_name %> </p>
+				<p><strong>Details: </strong><%= @location.details %></p>
+				<p><strong>Wifi Network Name: </strong><%= @location.ssid %></p>
+				<p><strong>Address: </strong><%= @location.address %></p>
+			</td>
+			<td>
+				<div id = "map">
+					<%= render partial: "map", locals: { location: @location, zoom: convert_radius_to_zoom(0.1), width: 600, height: 300 } %>
+				</div>
+			</td>
+		</tr>
+	</table>
 </div>
 
-<br>
+		<br>
 <ul>
 	<li><%= link_to "Edit Location", edit_location_path %><br>
 
@@ -20,11 +26,15 @@
 </ul>
 
 <h3> Comments for <%= @location.place_name %> </h3>
-<% @location.comments.each do |comment| %>
-<h4>Username: <%= comment.get_username %></h4>
-<p>Content: <%= comment.content %></p>
-	<%= button_to "Delete Comment", location_comment_path(@location, comment.id), method: :delete %>
-	<hr>
-<% end %>
+<div class = "comments_container">
+	<% @location.comments.each do |comment| %>
+	<div class = "comments" >
+		<h4>Username: <%= comment.get_username %></h4>
+		<p>Content: <%= comment.content %></p>
+		<hr>
+			<%= button_to "Delete Comment", location_comment_path(@location, comment.id), method: :delete %>
+		<% end %>
+	</div>
+</div>
 
 <%= link_to "Compare Nearby Wifi", chart_location_path %>

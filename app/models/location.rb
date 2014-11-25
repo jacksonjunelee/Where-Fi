@@ -51,11 +51,10 @@ class Location < ActiveRecord::Base
       }]
   end
 
-
 	def delete_fusion_table
 		table = FusionTableApi.get_fusion_table
 		row_id = table.select "ROWID", "WHERE OBJECTID=#{self.id.to_s}"
-		table.delete row_id[0][:rowid].to_i unless row_id[0] == nil
+		table.delete row_id[0][:rowid].to_i if row_id != []
 	end
 
   def new_tweet
@@ -66,11 +65,6 @@ class Location < ActiveRecord::Base
   def update_tweet
     client = TwitterApi.get_client
     client.update("Wifi Hotspot at #{self.place_name} has been edited.")
-  end
-
-  def delete_tweet
-    client = TwitterApi.get_client
-    client.update("Wifi Hotspot at #{self.place_name} has been deleted. :(")
   end
 
   def add_fav_point

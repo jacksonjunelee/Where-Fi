@@ -14,21 +14,24 @@
  *= require_self
  */
 
-@import url(http://fonts.googleapis.com/css?family=Raleway:300);
+/*@import url(http://fonts.googleapis.com/css?family=Raleway:300);*/
 
 body {
 	width: 100%;
 	height: 100%;
-	font-family: Raleway;
 	font-weight: 300;
 	background-color: #2A6F7E;
+	font-family: "serif", sans-serif;
 }
 
 .hometable {
-	margin:0px;padding:10px;
-	width:90%;
+
+	width:100%;
 	border:1px solid #000000;
-	background-color: lavender;
+}
+
+#table_home{
+	width: 100%;
 }
 
 #homeheader {
@@ -37,7 +40,7 @@ body {
   font-weight: bold;
   border-bottom-width:1px solid #000000;
   border-style: solid;
-  border-bottom:1px solid #000000;
+  border-bottom: solid black;
 }
 
 #divbox {
@@ -64,20 +67,39 @@ body {
 	position:relative;
 	right: -200px;
 }
+.comments_container {
+	width: 75%;
+	padding-left: 200px;
+}
 
-#container {
+.comments {
+	background-color: lavender;
+	margin: 0 auto;
+	padding-top: 5px;
+}
 
-	background: #A7E2D2;
+.container {
+	background: lavender;
 	border: solid #79BBD2;
+	margin:0px;
+	width:100%;
 }
 
-.location_details {
-	display: inline-block; vertical-align: top;
+#location_details {
+	vertical-align: top;
+	width: 350px;
+	padding-left: 15px;
+}
+#table {
+	width: 100%;
+}
+span {
+	font-weight: 30px;
 }
 
-.map {
-	display: inline-block;
-	padding-left: 170px
+#map {
+	/*padding-left: 170px;*/
+	float: right;
 }
 
 .centered_button {
@@ -86,13 +108,12 @@ body {
 
 a:link {
 	text-decoration: none;
-	color: #349D8A
+	color: lavender;
 }
 a:hover {
 	background-color: #A7E2D2 ;
 }
- 
-a:visited {
-	color: #349D8A;
-}
 
+a:visited {
+	color: lavender;
+}
