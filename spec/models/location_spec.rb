@@ -15,7 +15,20 @@ describe Location do
 		longitude: "-72.8394"
 		)}
 
+	let(:no_address_or_coords) { nowhere = Location.create(
+		address: nil,
+		latitude: nil,
+		longitude: nil,
+		ssid: "hello",
+		place_name: "nowhere"
+		)}
+
 	it "is valid ssid and place_name" do 
 		expect(valid_location).to be_valid
 	end
+
+	it "needs to have either an address or lat/long coordinates" do
+		expect(no_address_or_coords).to_not be_valid
+	end
+
 end

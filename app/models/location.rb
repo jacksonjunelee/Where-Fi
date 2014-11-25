@@ -11,13 +11,10 @@ class Location < ActiveRecord::Base
 
 
   def has_address_or_coordinates
-    if :address.blank? && (:latitude.blank? && :longitude.blank?)
-      false
-    else
-      true
+    if address.blank? && (latitude.blank? || longitude.blank?)
+      errors.add(:address_of_coords, "Wifi Hotspots need an address or coordinates to validate.")
     end
   end
-	#deos not make sense
 
   def nearby_wifi(dist)
   	data = Location.all
