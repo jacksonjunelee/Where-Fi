@@ -5,15 +5,17 @@
 
 <hr>
 
-<%= form_for [@location, @comment] do |f| %>
+<%= form_for [@location, @comment], html: {class: "pure-form pure-form-aligned"} do |f| %>
+	<div class="pure-control-group">
 	<%= f.label :content %>
 	<%= f.text_area :content , size: "40 x 6" %><br>
+	</div>
 
 	<%= f.hidden_field :location_id, value: params[:location_id] %>
 	
 	<%= f.hidden_field :user_id, value: current_user.id %>
 	
-
+	<div class = "centered_button">
 	<%= f.submit "Create new comment" %> 
-
+	</div>
 <% end %>

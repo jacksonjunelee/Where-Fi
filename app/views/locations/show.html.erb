@@ -1,15 +1,23 @@
 <h1> Location Details </h1>
 
-<%= render partial: "map", locals: { location: @location, zoom: convert_radius_to_zoom(0.1), width: 600, height: 300 } %>
-
+<div id = "container">
+	<div class = "location_details" >
 <p>Name: <%= @location.place_name %></p>
 <p>Details: <%= @location.details %></p>
 <p>Wifi Network Name: <%= @location.ssid %></p>
 <p>Address: <%= @location.address %></p>
+	</div>
+	<div class = "map">
+<%= render partial: "map", locals: { location: @location, zoom: convert_radius_to_zoom(0.1), width: 600, height: 300 } %>
+	</div>
+</div>
 
-<%= link_to "Edit Location", edit_location_path %><br>
+<br>
+<ul>
+	<li><%= link_to "Edit Location", edit_location_path %><br>
 
-<%= link_to "Add a Comment?", new_location_comment_path(@location) %><br><br>
+	<li><%= link_to "Add a Comment?", new_location_comment_path(@location), class: :link_class %><br><br>
+</ul>
 
 <h3> Comments for <%= @location.place_name %> </h3>
 <% @location.comments.each do |comment| %>
