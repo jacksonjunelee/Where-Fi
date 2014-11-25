@@ -22,13 +22,13 @@ body {
 	font-family: Raleway;
 	font-weight: 300;
 	background-color: #2A6F7E;
-	font-family: "serif", sans-serif;
 }
 
 .hometable {
-	margin:0px;padding:0px;
-	width:100%;
+	margin:0px;padding:10px;
+	width:90%;
 	border:1px solid #000000;
+	background-color: lavender;
 }
 
 #homeheader {
@@ -37,7 +37,7 @@ body {
   font-weight: bold;
   border-bottom-width:1px solid #000000;
   border-style: solid;
-  border-bottom: thick dotted #ff0000;
+  border-bottom:1px solid #000000;
 }
 
 #divbox {

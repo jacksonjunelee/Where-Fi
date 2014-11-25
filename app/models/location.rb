@@ -11,7 +11,7 @@ class Location < ActiveRecord::Base
   #explain geocoder!
   after_validation :geocode, :reverse_geocode
   #explain before destroy.
-  before_destroy :delete_fusion_table, :delete_tweet
+  before_destroy :delete_fusion_table
 
 
   def has_address_or_coordinates
@@ -55,7 +55,7 @@ class Location < ActiveRecord::Base
 	def delete_fusion_table
 		table = FusionTableApi.get_fusion_table
 		row_id = table.select "ROWID", "WHERE OBJECTID=#{self.id.to_s}"
-		table.delete row_id[0][:rowid].to_i
+		table.delete row_id[0][:rowid].to_i unless row_id[0] == nil
 	end
 
   def new_tweet
