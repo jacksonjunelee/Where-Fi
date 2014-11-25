@@ -9,7 +9,8 @@ class SessionsController < ApplicationController
       session[:current_user_id] = user.id
       redirect_to user
     else
-      flash[:error] = "Password does not match log-in."
+      flash[:login_error] = "Password does not match log-in."
+      #renamed :login_error for clarity.  
       redirect_to login_path
     end
 
