@@ -21,6 +21,9 @@ describe User do
 		expect(hari).to be_valid
 	end
 
+	it "returns a user's whole name with the method, full_name." do
+		expect(hari.full_name).to eq("hari Doe")
+	end
 
 end
 

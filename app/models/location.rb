@@ -3,11 +3,15 @@ class Location < ActiveRecord::Base
   validate :has_address_or_coordinates
 	#need to test address without address or cooridnates
   has_and_belongs_to_many :users
-  has_many :comments
+  has_many :comments, dependent: :destroy
+
   geocoded_by :address, :latitude => :latitude, :longitude => :longitude
 	#need to be tested
   reverse_geocoded_by :latitude, :longitude, :address => :address
+  #explain geocoder!
   after_validation :geocode, :reverse_geocode
+  #explain before destroy.
+  before_destroy :delete_fusion_table, :delete_tweet
 
 
   def has_address_or_coordinates
@@ -56,12 +60,21 @@ class Location < ActiveRecord::Base
 
   def new_tweet
     client = TwitterApi.get_client
-    client.update("New Wifi Hotspot at #{self.place_name}")
+    client.update("New Wifi Hotspot at #{self.place_name}.")
   end
 
   def update_tweet
     client = TwitterApi.get_client
-    client.update("Wifi Hotspot at #{self.place_name} has been edited")
+    client.update("Wifi Hotspot at #{self.place_name} has been edited.")
+  end
+
+  def delete_tweet
+    client = TwitterApi.get_client
+    client.update("Wifi Hotspot at #{self.place_name} has been deleted. :(")
+  end
+
+  def add_fav_point
+    self.fav_point == nil ? self.fav_point = 1 : self.fav_point += 1
   end
 
 end

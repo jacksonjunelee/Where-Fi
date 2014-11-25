@@ -56,7 +56,7 @@ class LocationsController < ApplicationController
   def destroy
     @location = Location.find(params[:id])
     @location.destroy
-    @location.delete_fusion_table
+    #@location.delete_fusion_table
     #do we want a tweet here?
     #after destryo delete fusion table method,
     # need delete button
