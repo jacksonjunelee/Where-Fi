@@ -1,4 +1,7 @@
+<<<<<<< HEAD
+=======
 
+>>>>>>> 0f7ec003cdbc134622693b99a172e32eed0b84e6
 /*! normalize.css 2012-07-07T09:50 UTC - http://github.com/necolas/normalize.css */
 
 /* ==========================================================================
@@ -40,8 +43,12 @@ video {
  * Remove excess height in iOS5 devices.
  */
 
+<<<<<<< HEAD
+audio:not([controls]) {
+=======
 a
 udio:not([controls]) {
+>>>>>>> 0f7ec003cdbc134622693b99a172e32eed0b84e6
     display: none;
     height: 0;
 }
@@ -499,4 +506,8 @@ textarea {
 table {
     border-collapse: collapse;
     border-spacing: 0;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 0f7ec003cdbc134622693b99a172e32eed0b84e6
