@@ -4,23 +4,28 @@ class LocationsController < ApplicationController
 
   def index
     coordinates = Geocoder.coordinates(params[:location] + " New York City")
-    @location = Location.new({latitude: coordinates[0], longitude: coordinates[1]})
-    @radius = params[:distance][:miles].to_f
-    if params[:sort][:sort_value] == 1
-      @near_wifi = @location.nearby_wifi(@radius)
+    if coordinates == nil
+      flash[:error] = "Address not found. Please try another address."
+      render :home
     else
-      @near_wifi = @location.nearby_wifi(@radius).sort_by { |location| location.fav_point}
+      @location = Location.new({latitude: coordinates[0], longitude: coordinates[1]})
+      @radius = params[:distance][:miles].to_f
+      if params[:sort][:sort_value] == 1
+        @near_wifi = @location.nearby_wifi(@radius)
+      else
+        @near_wifi = @location.nearby_wifi(@radius).sort_by { |location| location.fav_point}
+      end
     end
   end
   #change to home, change to search_results
 
   def show
     @location = Location.find(params[:id])
+    @users = User.all
   end
 
   def new
     @location = Location.new
-    #set session
   end
 
   def create
