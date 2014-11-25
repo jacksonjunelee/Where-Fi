@@ -17,6 +17,7 @@ class Location < ActiveRecord::Base
       true
     end
   end
+	#deos not make sense
 
   def nearby_wifi(dist)
   	data = Location.all
@@ -49,6 +50,7 @@ class Location < ActiveRecord::Base
 		table.delete "#{row_id[0][:rowid]}".to_i
 		table.insert data
 	end
+	#method for data
 
 	def delete_fusion_table
 		table = FusionTableApi.get_fusion_table
@@ -65,5 +67,5 @@ class Location < ActiveRecord::Base
     client = TwitterApi.get_client
     client.update("Wifi Hotspot at #{self.place_name} has been edited")
   end
-    
+
 end

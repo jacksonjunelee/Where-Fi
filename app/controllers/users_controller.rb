@@ -19,6 +19,7 @@ class UsersController < ApplicationController
 			render :new
 		end
 	end
+	#use beofre action for authirization
 
 	def edit
 		@user = User.find(params[:id])

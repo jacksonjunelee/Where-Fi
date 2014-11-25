@@ -5,6 +5,7 @@ class LocationsController < ApplicationController
   def index
     coordinates = Geocoder.coordinates(params[:location] + " New York City")
     coordinates = nil if params[:location] == ""
+    #comment onthis
     if coordinates == nil
       flash[:error] = "Address not found. Please try another address."
       render :home
@@ -48,17 +49,17 @@ class LocationsController < ApplicationController
     if @location.update(location_params)
       @location.update_fusion_table
       @location.update_tweet
-      redirect_to location_path(@location)
-    else
-      redirect_to location_path(@location)
     end
+    redirect_to location_path(@location)
   end
 
   def destroy
     @location = Location.find(params[:id])
-    Location.destroy(params[:id])
+    @location.destroy
     @location.delete_fusion_table
     #do we want a tweet here?
+    #after destryo delete fusion table method,
+    # need delte button
     render :home
   end
 
@@ -71,7 +72,7 @@ class LocationsController < ApplicationController
   end
 
   private
-  
+
   def location_params
   	params.require(:location).permit(:boro, :place_name, :details, :ssid, :address)
   end
