@@ -8,7 +8,12 @@ class User < ActiveRecord::Base
   has_many :comments
 
   def full_name
-  	return self.first_name + " " + self.last_name
+  	self.first_name + " " + self.last_name
   end
+
+  def sign_up_date
+  	self.created_at.to_date.to_s(:long)
+  end
+
   
 end

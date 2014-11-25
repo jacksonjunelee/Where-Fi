@@ -1,27 +1,21 @@
-<h1> Show Locations Page </h1>
+<h1> Location Details </h1>
 
 <%= render partial: "map", locals: { location: @location, zoom: convert_radius_to_zoom(0.1), width: 600, height: 300 } %>
 
-<% #wanna render a view, need to figure out a better way to change zoom.   %>
-
 <p>Name: <%= @location.place_name %></p>
-<p>Borough: <%= @location.boro %></p>
 <p>Details: <%= @location.details %></p>
-<p>Wifi Name: <%= @location.ssid %></p>
+<p>Wifi Network Name: <%= @location.ssid %></p>
 <p>Address: <%= @location.address %></p>
-<p>Latitude: <%= @location.latitude %></p>
-<p>Longitude: <%= @location.longitude %></p>
-<br>
 
 <%= link_to "Edit Location", edit_location_path %><br>
 
 <%= link_to "Add a Comment?", new_location_comment_path(@location) %><br><br>
 
 <h3> Comments for <%= @location.place_name %> </h3>
-<% @location.comments.each do |one_comment| %>
-<h4>Username:<%= @users.find(one_comment.user_id).username %></h4>
-<p>Content:<%= one_comment.content %><br><p>
-	<%= button_to "Delete Comment", location_comment_path(@location, one_comment.id), method: :delete %>
+<% @location.comments.each do |comment| %>
+<h4>Username: <%= comment.get_username %></h4>
+<p>Content: <%= comment.content %></p>
+	<%= button_to "Delete Comment", location_comment_path(@location, comment.id), method: :delete %>
 	<hr>
 <% end %> 
 
