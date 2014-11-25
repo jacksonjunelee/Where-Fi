@@ -11,7 +11,7 @@ class Location < ActiveRecord::Base
   #explain geocoder!
   after_validation :geocode, :reverse_geocode
   #explain before destroy.
-  before_destroy :delete_fusion_table, :delete_tweet
+  before_destroy :delete_fusion_table
 
 
   def has_address_or_coordinates

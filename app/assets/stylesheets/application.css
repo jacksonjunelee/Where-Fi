@@ -21,11 +21,13 @@ body {
 	height: 100%;
 	font-weight: 300;
 	background-color: #2A6F7E;
-	font-family: sans-serif;
 	padding: 8px;
+	font-family: "serif", sans-serif;
+
 }
 
 .hometable {
+
 	width:100%;
 	border:1px solid #000000;
 }
