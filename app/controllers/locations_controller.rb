@@ -59,7 +59,7 @@ class LocationsController < ApplicationController
     @location.delete_fusion_table
     #do we want a tweet here?
     #after destryo delete fusion table method,
-    # need delte button
+    # need delete button
     render :home
   end
 
