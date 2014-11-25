@@ -6,8 +6,8 @@
 
 
 <% client = TwitterApi.get_client %>
-<% client.user_timeline.each do |post| %>
-<blockquote class="twitter-tweet" lang="en"><p><%= post.text %></p>&mdash; wherefi (@Where__Fi) <a href="https://twitter.com/Where__Fi/status/<%= post.id %>"><%= post.created_at %></a></blockquote>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-<br>
+<% client.user_timeline[0..4].each do |post| %>
+	<blockquote class="twitter-tweet" lang="en"><p><%= post.text %></p>&mdash; wherefi (@Where__Fi) <a href="https://twitter.com/Where__Fi/status/<%= post.id %>"><%= post.created_at %></a></blockquote>
+	<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+	<br>
 <% end %>

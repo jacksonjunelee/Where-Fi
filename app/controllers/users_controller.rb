@@ -19,6 +19,7 @@ class UsersController < ApplicationController
 			render :new
 		end
 	end
+	#use beofre action for authirization
 
 	def edit
 		@user = User.find(params[:id])
@@ -56,7 +57,7 @@ class UsersController < ApplicationController
 		user_location = Location.find(params[:location_id])
 		user = User.find(session[:current_user_id])
 		user.locations.push(user_location)
-		user_location.fav_point += 1
+		user_location.fav_point == nil ? user_location.fav_point = 1 : user_location.fav_point += 1
 		user_location.save
 		redirect_to user
 	end

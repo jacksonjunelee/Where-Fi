@@ -4,6 +4,8 @@ class LocationsController < ApplicationController
 
   def index
     coordinates = Geocoder.coordinates(params[:location] + " New York City")
+    coordinates = nil if params[:location] == ""
+    #comment onthis
     if coordinates == nil
       flash[:error] = "Address not found. Please try another address."
       render :home
@@ -13,15 +15,14 @@ class LocationsController < ApplicationController
       if params[:sort][:sort_value] == 1
         @near_wifi = @location.nearby_wifi(@radius)
       else
-        @near_wifi = @location.nearby_wifi(@radius).sort_by { |location| location.fav_point}
+        @near_wifi = @location.nearby_wifi(@radius).sort_by { |location| location.fav_point }
       end
     end
   end
-  #change to home, change to search_results
+  #can this be made cleaner?
 
   def show
     @location = Location.find(params[:id])
-    @users = User.all
   end
 
   def new
@@ -32,8 +33,7 @@ class LocationsController < ApplicationController
     @location = Location.new(location_params)
     if @location.save
       @location.add_to_fusion_table
-      client = TwitterApi.get_client
-      client.update("New Location added, #{@location.place_name} has free hotspot")
+      @location.new_tweet
     	redirect_to location_path(@location)
     else
     	render :new
@@ -48,18 +48,18 @@ class LocationsController < ApplicationController
     @location = Location.find(params[:id])
     if @location.update(location_params)
       @location.update_fusion_table
-      client = TwitterApi.get_client
-      client.update("#{@location.place_name} has been edited")
-      redirect_to location_path(@location)
-    else
-      redirect_to location_path(@location)
+      @location.update_tweet
     end
+    redirect_to location_path(@location)
   end
 
   def destroy
     @location = Location.find(params[:id])
-    Location.destroy(params[:id])
+    @location.destroy
     @location.delete_fusion_table
+    #do we want a tweet here?
+    #after destryo delete fusion table method,
+    # need delte button
     render :home
   end
 
@@ -68,11 +68,11 @@ class LocationsController < ApplicationController
     @near_wifi = @location.nearby_wifi(0.5)
     #@near_wifi = Location.near(@location,0.5)
     render :chart
-      #need to check radius
+    #is there still a problem here with radius?
   end
 
   private
-  
+
   def location_params
   	params.require(:location).permit(:boro, :place_name, :details, :ssid, :address)
   end

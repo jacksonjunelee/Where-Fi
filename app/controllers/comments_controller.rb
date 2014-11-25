@@ -6,12 +6,11 @@ class CommentsController < ApplicationController
 	end
 
 	def create
-		@comment = Comment.new(comment_params)
-		@comment.save
+		@comment = Comment.create(comment_params)
 		redirect_to @comment.location
 	end
 
-	def destroy 
+	def destroy
 		Comment.destroy(params[:id])
 		redirect_to root_path
 	end
