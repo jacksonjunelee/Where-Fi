@@ -3,14 +3,15 @@ class LocationsController < ApplicationController
   before_action :authenticate, except: [:index, :show]
 
   def index
-    coordinates = Geocoder.coordinates(params[:location] + " New York City")
-    coordinates = nil if params[:location] == ""
-    #comment onthis
+    coordinates = GeocoderApi.get_coordinates(params[:location])
+    #please see lib folder geocoder_api.
     if coordinates == nil
-      flash[:error] = "Address not found. Please try another address."
+      flash[:address_error] = "Address not found. Please try another address."
+      #changed to address_error for clarity.  
       render :home
     else
       @location = Location.new({latitude: coordinates[0], longitude: coordinates[1]})
+      #we need @location to be a Location object in order to use Geocoder methods like distance by.  
       @radius = params[:distance][:miles].to_f
       if params[:sort][:sort_value] == 1
         @near_wifi = @location.nearby_wifi(@radius)
@@ -19,7 +20,6 @@ class LocationsController < ApplicationController
       end
     end
   end
-  #can this be made cleaner?
 
   def show
     @location = Location.find(params[:id])
@@ -34,7 +34,7 @@ class LocationsController < ApplicationController
     if @location.save
       @location.add_to_fusion_table
       @location.new_tweet
-    	redirect_to location_path(@location)
+    	redirect_to @location
     else
     	render :new
     end
@@ -50,7 +50,7 @@ class LocationsController < ApplicationController
       @location.update_fusion_table
       @location.update_tweet
     end
-    redirect_to location_path(@location)
+    redirect_to @location
   end
 
   def destroy
