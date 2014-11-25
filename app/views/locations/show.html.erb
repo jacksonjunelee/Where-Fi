@@ -33,8 +33,8 @@
 		<p>Content: <%= comment.content %></p>
 		<hr>
 			<%= button_to "Delete Comment", location_comment_path(@location, comment.id), method: :delete %>
-		<% end %>
-	</div>
+		</div>
+	<% end %>
 </div>
 
 <%= link_to "Compare Nearby Wifi", chart_location_path %>
