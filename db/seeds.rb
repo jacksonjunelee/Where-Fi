@@ -1,7 +1,5 @@
 hotspots = HTTParty.get("https://nycopendata.socrata.com/api/views/jd4g-ks2z/rows.json?accessType=DOWNLOAD")["data"]
 
-Location.destroy_all
-
 hotspots.each do |hotspot|
 	Location.create({
 		boro: hotspot[9],

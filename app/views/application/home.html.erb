@@ -1,7 +1,7 @@
 <h1><%= flash[:address_error] %></h1>
 
 <div class="hometable" >
-      <table >
+      <table id = "table_home">
           <tr id ="homeheader">
               <td >
                   Map
@@ -13,7 +13,6 @@
           <tr>
               <td id = "moo">
 									<%= render partial: "locations/map", locals: { location: Location.new({latitude: 40.70392141437475, longitude: -73.78477936324543}), zoom: convert_radius_to_zoom('all'), width: 800, height: 600 } %>
-
               </td>
               <td>
                 <% client = TwitterApi.get_client %>
