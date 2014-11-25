@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   has_secure_password
 
   has_and_belongs_to_many :locations
-  has_many :comments
+  has_many :comments, dependent: :destroy
 
   def full_name
   	self.first_name + " " + self.last_name
@@ -15,5 +15,4 @@ class User < ActiveRecord::Base
   	self.created_at.to_date.to_s(:long)
   end
 
-  
 end
