@@ -8,26 +8,43 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <h2><%= link_to "Homepage", root_path %></h2>
-  <%= form_tag(locations_path, method: :get) do%>
-    <%= label_tag(:address, 'Address') %>
-    <%= text_field_tag(:location, params[:location]) %><br>
-    <%= label_tag(:distance, "Search Radius") %>
-    <%= select(:distance, :miles, options_for_select([["2 Blocks", 0.1], ["6 Blocks", 0.3], ["1/2 Mile", 0.5], ["1 Mile", 1]])) %><br>
-    <%= label_tag(:Sort_by, 'Sort by') %>
-    <%= select(:sort, :sort_value, options_for_select([["Distance", 1], ["Most Popular", 2]])) %><br>
-    <%= submit_tag("Search", name: :nil) %>
-  <% end %>
-  <br>
-  <% if session[:current_user_id] %>
-    Welcome, <%= link_to current_user.username, current_user %> |
-    <%= link_to "Log Out", sessions_path, method: :delete %> | 
-    <%= link_to "Add a New Wifi HotSpot!", new_location_path %>
-  <% else %>
-    <%= link_to "Sign Up", new_user_path %> |
-    <%= link_to "Log In", login_path %>
-  <% end %>
-  <br>
+<div id="align">
+  <div id="divbox">
+    <h2><%= link_to "Homepage", root_path %></h2>
+    <%= form_tag(locations_path, method: :get) do%>
+      <%= label_tag(:address, 'Address') %>
+      <%= text_field_tag(:location, params[:location]) %><br>
+      <%= label_tag(:distance, "Search Radius") %>
+      <%= select(:distance, :miles, options_for_select([["2 Blocks", 0.1], ["6 Blocks", 0.3], ["1/2 Mile", 0.5], ["1 Mile", 1]])) %><br>
+      <%= label_tag(:Sort_by, 'Sort by') %>
+      <%= select(:sort, :sort_value, options_for_select([["Distance", 1], ["Most Popular", 2]])) %><br>
+      <%= submit_tag("Search", name: :nil) %>
+    <% end %>
+  </div>
+
+  <div id="cats">
+    <table >
+      <tr>
+        <td>
+      <% if session[:current_user_id] %>
+      Welcome, <%= link_to current_user.username, current_user %> |
+      <%= link_to "Log Out", sessions_path, method: :delete %> |
+        </td>
+    </tr>
+    <tr>
+      <td>
+      <%= link_to "Add a New Wifi HotSpot!", new_location_path %>
+      </td>
+    </tr>
+    </table>
+
+  </div>
+    <% else %>
+      <%= link_to "Sign Up", new_user_path %> |
+      <%= link_to "Log In", login_path %>
+    <% end %>
+  </div>
+</div>
 
 <%= yield %>
 

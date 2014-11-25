@@ -25,6 +25,6 @@
 <p>Content: <%= comment.content %></p>
 	<%= button_to "Delete Comment", location_comment_path(@location, comment.id), method: :delete %>
 	<hr>
-<% end %> 
+<% end %>
 
 <%= link_to "Compare Nearby Wifi", chart_location_path %>

@@ -15,5 +15,4 @@ class User < ActiveRecord::Base
   	self.created_at.to_date.to_s(:long)
   end
 
-  
 end
