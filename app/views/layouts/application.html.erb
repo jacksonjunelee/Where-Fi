@@ -8,50 +8,56 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  
-<div id=image>
-  <img src="/assets/wherefi.png">
-</div>
 
-<div id = "align">
-    <h2><%= link_to "Homepage", root_path %></h2>
-    <%= form_tag(locations_path, method: :get, class: "pure-form pure-form-aligned") do%>
-      <strong><%= label_tag(:address, 'Address') %></strong>
-      <%= text_field_tag(:location, params[:location]) %><br>
-      <strong><%= label_tag(:distance, "Search Radius") %></strong>
-      <%= select(:distance, :miles, options_for_select([["2 Blocks", 0.1], ["6 Blocks", 0.3], ["1/2 Mile", 0.5], ["1 Mile", 1]])) %><br>
-      <strong><%= label_tag(:Sort_by, 'Sort by') %></strong>
-      <%= select(:sort, :sort_value, options_for_select([["Distance", 1], ["Most Popular", 2]])) %><br>
-      <%= submit_tag("Search", name: :nil) %>
-    <% end %>
-</div>
-
-  <div id="cats">
-    <table >
+  <table>
       <tr>
-        <td>
+          <td >
+            <img src="/assets/wherefi.png">
+          </td>
+          <td >
+            <div class="button_center">
+              <h2><%= link_to "Homepage", root_path %></h2>
+            </div>
+
+              <%= form_tag(locations_path, method: :get, class: "pure-form pure-form-aligned") do%>
+
+              <div class="pure-control-group">
+                <strong><%= label_tag(:address, 'Address') %></strong>
+                <%= text_field_tag(:location, params[:location]) %><br>
+              </div>
+
+              <div class="pure-control-group">
+                <strong><%= label_tag(:distance, "Search Radius") %></strong>
+                <%= select(:distance, :miles, options_for_select([["2 Blocks", 0.1], ["6 Blocks", 0.3], ["1/2 Mile", 0.5], ["1 Mile", 1]])) %><br>
+              </div>
+
+              <div class="pure-control-group">
+                <strong><%= label_tag(:Sort_by, 'Sort by') %></strong>
+                <%= select(:sort, :sort_value, options_for_select([["Distance", 1], ["Most Popular", 2]])) %><br>
+              </div>
+
+              <div class="button_center">
+                <%= submit_tag("Search", name: :nil) %>
+              </div>
+
+              <% end %>
+          </div>
+        </td>
+      </tr>
+    </table>
+
+
       <% if session[:current_user_id] %>
       Welcome, <%= link_to current_user.username, current_user %> |
       <%= link_to "Log Out", sessions_path, method: :delete %> |
-        </td>
-    </tr>
-    <tr>
-      <td>
       <%= link_to "Add a New Wifi HotSpot!", new_location_path %>
-      </td>
-    </tr>
-    </table>
-
-  </div>
     <% else %>
-      <%= link_to "Sign Up", new_user_path %> |
+      <%= link_to "Sign Up", new_user_path %>|
       <%= link_to "Log In", login_path %>
     <% end %>
 
 
 <%= yield %>
-<footer>
-<%= link_to "WhereFi", root_path %>
-</footer>
+
 </body>
 </html>
