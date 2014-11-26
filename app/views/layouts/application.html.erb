@@ -8,8 +8,8 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<div id="align">
-  <div id="divbox">
+  <%= link_to (image_tag("wherefi.png")), root_path %>
+<div id = "align">
     <h2><%= link_to "Homepage", root_path %></h2>
     <%= form_tag(locations_path, method: :get) do%>
       <%= label_tag(:address, 'Address') %>

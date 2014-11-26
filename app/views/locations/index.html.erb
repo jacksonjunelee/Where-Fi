@@ -1,6 +1,7 @@
-<h1> Nearby Wifi Hotspots </h1>
-<% #I am adding the @location.latitude and @location.longitude as the center of the map %>
 <div class = "comments_container">
+	<h1> Nearby Wifi Hotspots </h1>
+	<% #I am adding the @location.latitude and @location.longitude as the center of the map %>
+
 	<div class = "users" >
 		<%= render partial: "map", locals: { location: @location, zoom: convert_radius_to_zoom(@radius), width: 600, height: 300 } %>
 </div>
