@@ -4,23 +4,35 @@
 
 <hr>
 
-<%= form_for @user do |f| %>
+<%= form_for @user, html: {class: "pure-form pure-form-aligned"} do |f| %>
 
+<div class="pure-control-group">
 	<%= f.label :username %>
 	<%= f.text_field :username %><br>
+</div>
 
+<div class="pure-control-group">
 	<%= f.label :first_name %>
 	<%= f.text_field :first_name %><br>
+</div>
 
+<div class="pure-control-group">
 	<%= f.label :last_name %>
 	<%= f.text_field :last_name %><br>
+</div>
 
+<div class="pure-control-group">
 	<%= f.label :password %>
 	<%= f.password_field :password %><br>
+</div>
 
+<div class="pure-control-group">
 	<%= f.label :password_confirmation %>
 	<%= f.password_field :password_confirmation %><br>
+</div>
 
+<div class="button_center">
 	<%= f.submit %><br>
+</div>
 
-<% end %> 
+<% end %>

@@ -27,7 +27,6 @@ body {
 }
 
 .hometable {
-
 	width:100%;
 	border:1px solid #000000;
 }
@@ -45,12 +44,10 @@ body {
   border-bottom: solid black;
 }
 
-#divbox {
-  text-align: center;
-
-}
 #moo {
   vertical-align: top;
+	padding-top: 12px;
+	padding-left: 5px;
 }
 
 #cats {
@@ -65,7 +62,7 @@ body {
 	font-size: 100px;
 }
 
-.milk{
+.button_center {
 	position:relative;
 	right: -200px;
 }
