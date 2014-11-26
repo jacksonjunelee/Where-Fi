@@ -50,6 +50,11 @@ body {
 	padding-left: 5px;
 }
 
+#centered_search {
+	width: 82%;
+
+}
+
 #cats {
 	float: right;
 	position: relative;
