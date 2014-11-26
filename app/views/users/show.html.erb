@@ -9,7 +9,7 @@
 <% @user.locations.uniq.each do |location| %>
 	<div class = "users" >
 		<strong><%= location.place_name %></strong><br>
-		<%= render partial: "locations/map", locals: { location: location, zoom: convert_radius_to_zoom(0.1), height: 200, width: 200 } %>
+		<%= render partial: "locations/map", locals: { location: location, zoom: convert_radius_to_zoom(0.1), height: 200, width: 800 } %>
 		<%= button_to "Remove Favorite Location from Favorites", remove_favorite_to_user_path(session[:current_user_id], location.id), method: :delete %>
 		</div>
 	<% end %>
