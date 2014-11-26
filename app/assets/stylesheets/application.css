@@ -122,12 +122,9 @@ span {
 
 a:link {
 	text-decoration: none;
-	color: lavender;
-}
-a:hover {
-	background-color: #A7E2D2 ;
+	color: mediumaquamarine;
 }
 
 a:visited {
-	color: lavender;
+	color: mediumaquamarine;
 }
