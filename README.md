@@ -2,8 +2,11 @@ Where-Fi
 ========
 
 Project Two Where-Fi App
+------------------------
 Jackson Lee
+
 Tony DeFreitas
+
 Caroline Morgan
 
 Where-Fi is a web-app that allows users to find open, public, free Wifi Hotspots geographically. Currently, our app finds Public Wifi locations as listed by our data course, the City of New York. Where-Fi was developed using Ruby on Rails Web Development Framework, Active Record for Object Relationship Mapping, and Postgresql for Database Management.  Further, the following Ruby Gems were used for the following purposes:  
