@@ -1,26 +1,25 @@
 <h1><%= flash[:address_error] %></h1>
 
-<div class="hometable" >
-      <table id = "table_home">
-          <tr id ="homeheader">
-              <td >
-                  Map
-              </td>
-							<td>
-									Twitter Feed
-							</td>
-          </tr>
-          <tr>
-              <td id = "moo">
-									<%= render partial: "locations/map", locals: { location: Location.new({latitude: 40.70392141437475, longitude: -73.78477936324543}), zoom: convert_radius_to_zoom('all'), width: 800, height: 600 } %>
-              </td>
-              <td>
-                <% client = TwitterApi.get_client %>
-										<% client.user_timeline[0..4].each do |post| %>
-											<blockquote class="twitter-tweet" lang="en"><p><%= post.text %></p>&mdash; wherefi (@Where__Fi) <a href="https://twitter.com/Where__Fi/status/<%= post.id %>"><%= post.created_at %></a></blockquote>
-											<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-									<% end %>
-              </td>
-          </tr>
-      </table>
-  </div>
+<div class="hometable">
+  <table>
+    <tr>
+      <td class="map">
+        <div>
+      		<%= render partial: "locations/map", locals: { location: Location.new({latitude: 40.70392141437475, longitude: -73.78477936324543}), zoom: convert_radius_to_zoom('all'), width: 700, height: 500 } %>
+        </div>
+      </td>
+      <td class="twitter">
+        <div>
+          <% client = TwitterApi.get_client %>
+      		<% client.user_timeline[0..2].each do |post| %>
+      		  <blockquote class="twitter-tweet" lang="en">
+              <%= post.text %>&mdash; wherefi (@Where__Fi) 
+              <a href="https://twitter.com/Where__Fi/status/<%= post.id %>"><%= post.created_at %></a>
+            </blockquote>
+      		  <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+      		<% end %>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>

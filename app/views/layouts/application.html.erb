@@ -1,62 +1,46 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>WhereFiApp</title>
+  <head>
+    <title>WhereFiApp</title>
 
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-  <table id= "centered_search">
-      <tr>
-          <td >
-            <%= link_to (image_tag("wherefi.png")), root_path %>
-          </td>
-          <td>
-            <div class="button_center">
-              <h2><%= link_to "Homepage", root_path %></h2>
-            </div>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <%= link_to (image_tag("wherefi.png")), root_path %>
+      </div>
+      <div class="header_bar">
+        <div class="search_form">
+          <%= form_tag(locations_path, method: :get) do %>
+            <%= label_tag(:address, 'Address') %>
+            <%= text_field_tag(:location, params[:location]) %><br>
 
-              <%= form_tag(locations_path, method: :get, class: "pure-form pure-form-aligned") do%>
+            <%= label_tag(:distance, "Search Radius") %>
+            <%= select(:distance, :miles, options_for_select([["2 Blocks", 0.1], ["6 Blocks", 0.3], ["1/2 Mile", 0.5], ["1 Mile", 1]])) %><br>
 
-              <div class="pure-control-group">
-                <strong><%= label_tag(:address, 'Address') %></strong>
-                <%= text_field_tag(:location, params[:location]) %><br>
-              </div>
-
-              <div class="pure-control-group">
-                <strong><%= label_tag(:distance, "Search Radius") %></strong>
-                <%= select(:distance, :miles, options_for_select([["2 Blocks", 0.1], ["6 Blocks", 0.3], ["1/2 Mile", 0.5], ["1 Mile", 1]])) %><br>
-              </div>
-
-              <div class="pure-control-group">
-                <strong><%= label_tag(:Sort_by, 'Sort by') %></strong>
-                <%= select(:sort, :sort_value, options_for_select([["Distance", 1], ["Most Popular", 2]])) %><br>
-              </div>
-
-              <div class="button_center">
-                <%= submit_tag("Search", name: :nil) %>
-              </div>
-
-              <% end %>
-          </div>
-        </td>
-      </tr>
-    </table>
-
-
-      <% if session[:current_user_id] %>
-      Welcome, <%= link_to current_user.username, current_user %> |
-      <%= link_to "Log Out", sessions_path, method: :delete %> |
-      <%= link_to "Add a New Wifi HotSpot!", new_location_path %>
-    <% else %>
-      <%= link_to "Sign Up", new_user_path %>|
-      <%= link_to "Log In", login_path %>
-    <% end %>
-
-
-<%= yield %>
-
-</body>
+            <%= label_tag(:Sort_by, 'Sort by') %>
+            <%= select(:sort, :sort_value, options_for_select([["Distance", 1], ["Most Popular", 2]])) %><br>
+            <%= submit_tag("Search", name: :nil) %>
+          <% end %>
+        </div>
+        <div class="login">
+          <% if session[:current_user_id] %>
+          Welcome, <%= link_to current_user.username, current_user %> |
+          <%= link_to "Log Out", sessions_path, method: :delete %> |
+          <%= link_to "Add a New Wifi HotSpot!", new_location_path %>
+          <% else %>
+          <%= link_to "Sign Up", new_user_path %>|
+          <%= link_to "Log In", login_path %>
+          <% end %>
+        </div>
+      </div>
+    </header>
+    <div class="page_content" >
+      <%= yield %>
+    </div>
+  <footer><%= link_to "WhereFi", root_path %><%= " " + Time.zone.now.year.to_s%></footer>
+  </body>
 </html>
